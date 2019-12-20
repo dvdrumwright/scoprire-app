@@ -1,6 +1,7 @@
 class Ride < ActiveRecord::Base
   belongs_to :cyclist
-  has_one :post, through: :cyclist
+  has_many :rides
+  has_many :post
 
-  validates :location, :description, :ride_distance 
+   validates :ride_date, :location, :description, :ride_distance, presence: true
 end

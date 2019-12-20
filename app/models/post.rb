@@ -1,9 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :cyclist
-  has_one :ride, Through: :cyclist
+  has_many :rides, through: :cyclist
 
-  validates :ride_distance, :ride_date, :location, :artist_id, presence: true
-
-
-
+   validates :title, :description, presence: true
 end

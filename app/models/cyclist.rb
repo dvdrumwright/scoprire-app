@@ -1,15 +1,9 @@
 class Cyclist < ActiveRecord::Base
   has_many :rides
-  belongs_to :post
+  has_many :post, through: :rides
 
-  validates :name, :user, presence: true
-  validates :name, uniqueness: true
+  validates :name, :email, presence: true
 
-  def slug
-    self.name.downcase.split(" ").join("-")
-  end
+  has_secure_password
 
-  def self.find_by_slug(slug)
-    Cyclist.all.detect {|x| slug == x.slug}
-  end
 end
