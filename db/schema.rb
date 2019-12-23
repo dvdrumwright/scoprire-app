@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 20191220154208) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "cyclist_id"
-    t.integer  "ride_id"
     t.string   "title"
     t.string   "description"
     t.integer  "user_id"
@@ -33,11 +31,11 @@ ActiveRecord::Schema.define(version: 20191220154208) do
   end
 
   create_table "rides", force: :cascade do |t|
-    t.integer  "cyclist_id"
-    t.datetime "ride_date"
     t.string   "location"
     t.text     "description"
-    t.float    "ride_distance"
+    t.string   "ride_distance"
+    t.string   "ride_date"
+    t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

@@ -1,8 +1,6 @@
 class CreatePosts < ActiveRecord::Migration
   def change
-    create_table :posts do |t|
-      t.belongs_to :cyclist
-      t.belongs_to :ride 
+    create_table :posts do |t| 
       t.string :title
       t.string :description
       t.integer :user_id
