@@ -1,1 +1,17 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<!-- This is my edit page; the purpose of this file is to allow the user make updates -->
+<h1>Update account</h1>
+<form method="Post" action="/cyclists/<% @cylist.id">
+  <input id="hidden" type="hidden" name="_method" value="Patch">
+
+<div class="edit-account">
+
+<label>Name</label>
+  <input type="text" class="edit-account" name="name" value="patch" required value="<%= @cyclist.name %>"><br>
+<label>Email</label>
+  <input type="text" class="edit-account" name="email" value="patch" required value="<%= @cyclist.email %>"><br>
+<label>Password</label>
+  <input type="password" class="edit-account" required name="password" value="<%= @cyclist.password %>"><br>
+</div> 
+
+  <input class="btn btn-primary" type="submit" value="submit">
+</form>

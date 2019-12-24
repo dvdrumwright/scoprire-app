@@ -1,1 +1,19 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h2> Create User account  </h2>
+
+<% unless locals.empty? %>
+ <%= message %>
+<% end %>
+
+
+
+<h3> Sign Up </h3>
+<form action="/cyclists" method="post">
+  <p>Name: <input type="text" name="Name"></p>
+  <p>Email: <input type="text" name="Email"></p>
+
+  <label>Bio</lable>
+  <textarea type="text" class="form-control" name="bio" placeholder="Your artist bio here (optional)" rows="6"></textarea>
+
+  <p>Password: <input type="text" name="password"></p>
+  <input class="btn btn-primary" type="submit">
+</form>

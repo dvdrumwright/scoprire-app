@@ -1,0 +1,14 @@
+<h3> Welcome to Scoprire </h3>
+<p> Currently under construction !!!! </p>
+
+<nav>
+  <% if logged_in? %>
+  <a href="/rides/new"> Create New Ride </a>
+  <a href="/logout"> Log Out </a>
+  <p>Welcome, <%=current_user.name %></p>
+
+  <% else %>
+  <a href="/login">Log In</a> || <a href="/signup">Sign Up</a>
+  <% end %>
+
+</nav>
