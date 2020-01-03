@@ -1,6 +1,6 @@
 <!-- This is my edit page; the purpose of this file is to allow the user make updates -->
-<h1>Update account</h1>
-<form method="Post" action="/cyclists/<% @cylist.id">
+<h1>Edit your account</h1>
+<form method="Post" action="/cyclists/<%=@cylist.id%>">
   <input id="hidden" type="hidden" name="_method" value="Patch">
 
 <div class="edit-account">
@@ -11,7 +11,7 @@
   <input type="text" class="edit-account" name="email" value="patch" required value="<%= @cyclist.email %>"><br>
 <label>Password</label>
   <input type="password" class="edit-account" required name="password" value="<%= @cyclist.password %>"><br>
-</div> 
+</div>
 
   <input class="btn btn-primary" type="submit" value="submit">
 </form>

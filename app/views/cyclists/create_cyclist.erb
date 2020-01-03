@@ -1,21 +1,17 @@
 <!-- This file creates new instance of a new user  -->
 
-<h2> Create User account  </h2>
+
 
 <% unless locals.empty? %>
  <%= message %>
 <% end %>
 
 
-
-<h3> Sign Up </h3>
-<form action="/cyclists" method="post">
-  <p>Name: <input type="text" name="Name"></p>
-  <p>Email: <input type="text" name="Email"></p>
-
-  <label>Bio</lable>
-  <textarea type="text" name="bio" placeholder="Cyclist Bio" rows="6"></textarea>
-
+<h3>Sign Up</h3>
+<form action="/signup" method="POST">
+  <p>Name: <input type="text" name="username"></p>
+  <p>Email: <input type="text" name="email"></p>
   <p>Password: <input type="text" name="password"></p>
+  <p>Bio: <input type="text" name="Bio" rows="6"
   <input class="btn btn-primary" type="submit">
 </form>

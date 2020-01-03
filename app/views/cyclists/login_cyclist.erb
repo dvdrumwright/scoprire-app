@@ -1,17 +1,12 @@
 <!-- this page ask the user to sign up  -->
-<h1>Login</h1>
 
-<div class="form">
-  <form action="/login" method="post">
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" class="form-control" name="username" required placeholder="Your Name"><br>
-      <label>Password</label>
-      <input type="password" class="form-control" required name="password"><br>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
+<h1>Please Login</h1>
+<form method="post" action="/login">
+  <input type="text" name="username" placeholder="Username:">
+  <input type="text" name="password" placeholder="Password:">
+
+  <input type="submit" value="submit">
+</form>
 
 
 

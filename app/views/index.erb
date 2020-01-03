@@ -1,5 +1,6 @@
 <h3> Welcome to Scoprire </h3>
-<p> Currently under construction !!!! </p>
+<p>Please <a href="/login">Login In </a> or <a href="/signup"> Sign Up</a></p>
+
 
 <nav>
   <% if logged_in? %>
@@ -8,7 +9,8 @@
   <p>Welcome, <%=current_user.name %></p>
 
   <% else %>
-  <a href="/login">Log In</a> || <a href="/signup">Sign Up</a>
+  <a href="/login"></a>
+  <a href="/signup"></a>
   <% end %>
 
 </nav>
