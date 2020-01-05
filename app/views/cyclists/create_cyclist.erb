@@ -1,17 +1,19 @@
-<!-- This file creates new instance of a new user  -->
-
 
 
 <% unless locals.empty? %>
- <%= message %>
+  <%= message %>
 <% end %>
 
 
 <h3>Sign Up</h3>
 <form action="/signup" method="POST">
-  <p>Name: <input type="text" name="username"></p>
-  <p>Email: <input type="text" name="email"></p>
-  <p>Password: <input type="text" name="password"></p>
-  <p>Bio: <input type="text" name="Bio" rows="6"
+  <label>name</label>
+   <input type="text" name="name"><br>
+   <label>Password</label>
+    <input type="text" name="password"><br>
+  <label>Email</label>
+   <input type="text" name="email"><br>
+  <label>BIO</label>
+    <input type="text" name="bio"><br>
   <input class="btn btn-primary" type="submit">
 </form>

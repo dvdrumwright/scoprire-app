@@ -1,37 +1,97 @@
 class CyclistsController < ApplicationController
-
-  # GET: /cyclists
-  get "/cyclists" do
-    erb :"/cyclists/index"
+ get '/signup' do
+    if logged_in?
+      redirect to "/cyclists/#{current_user.id}"
+    else
+      erb :'/cyclists/create_cyclist'
+    end
   end
 
-  # GET: /cyclists/new
-  get "/cyclists/new" do
-    erb :"/cyclists/new.html"
+  get '/login' do
+    if logged_in?
+      redirect to "/cyclists/#{current_user.id}"
+    else
+      erb :'/cyclists/login_cyclist'
+    end
   end
 
-  # POST: /cyclists
-  post "/cyclists" do
-    redirect "/cyclists"
+  post '/login' do
+    @cyclist = Cyclist.find_by(name: params[:name], password: params[:password])
+      if !@cyclist.nil?
+        session[:user_id] = @cyclist.id
+       redirect to '/'
+      else
+       redirect to '/login'
+      end
+    end
+
+    post '/signup' do
+     @cyclist = Cyclist.new(name: params[:name], password: params[:password], email: params[:email], bio: params[:bio])
+    if @cyclist.save
+      session[:user_id] = @cyclist.id
+      redirect to "/cyclists/#{@cyclist.id}"
+    else
+      redirect to '/signup'
+    end
   end
 
-  # GET: /cyclists/5
   get "/cyclists/:id" do
-    erb :"/cyclists/show.html"
+    @cyclist = Cyclist.find_by_id(params[:id])
+    if logged_in? && @cyclist  == current_user
+      erb :'/cyclists/show_cyclist'
+    else
+      redirect to '/login'
+    end
   end
 
-  # GET: /cyclists/5/edit
+
   get "/cyclists/:id/edit" do
-    erb :"/cyclists/edit.html"
-  end
+    @cyclist = Cyclist.find_by_id(params[:id])
+    if logged_in? && @cyclist  == current_user
+      erb :'/cyclists/edit_cyclist'
+    else
+      redirect to '/login'
+    end
+ end
 
-  # PATCH: /cyclists/5
+
   patch "/cyclists/:id" do
-    redirect "/cyclists/:id"
+    @cyclist = Cyclist.find_by_id(params[:id])
+    @cyclist.name = params[:name]
+    @cyclist.email = params[:email]
+    @cyclist.password = params[:password]
+    if logged_in? && @cyclist == current_user && @cyclist.valid?
+      @cyclist.save
+      redirect to "/cyclists/#{@cyclist.id}"
+    else
+      redirect to '/login'
+    end
   end
 
-  # DELETE: /cyclists/5/delete
+  get '/logout' do
+   if logged_in?
+     session.clear
+     redirect to '/'
+   else
+     redirect to '/'
+   end
+ end
+
+
   delete "/cyclists/:id/delete" do
-    redirect "/cyclists"
+   @cyclist = Cyclist.find_by_id(params[:id])
+   if logged_in? && @cyclist == current_user
+     @cyclist.posts.each do |post|
+       post.delete
+     end
+     @cyclist.rides.each do |ride|
+       ride.delete
+     end
+     @cyclist.delete
+     session/clear
+     redirect to '/'
+   else
+    redirect to '/login'
+    end
   end
 end
