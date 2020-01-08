@@ -16,7 +16,7 @@ class CyclistsController < ApplicationController
   end
 
   post '/login' do
-    @cyclist = Cyclist.find_by(name: params[:name], password: params[:password])
+    @cyclist = Cyclist.find_by(username: params[:username], password: params[:password])
       if !@cyclist.nil?
         session[:user_id] = @cyclist.id
        redirect to '/'
@@ -26,7 +26,7 @@ class CyclistsController < ApplicationController
     end
 
     post '/signup' do
-     @cyclist = Cyclist.new(name: params[:name], password: params[:password], email: params[:email], bio: params[:bio])
+     @cyclist = Cyclist.new(username: params[:username], password: params[:password], email: params[:email], bio: params[:bio])
     if @cyclist.save
       session[:user_id] = @cyclist.id
       redirect to "/cyclists/#{@cyclist.id}"
@@ -57,9 +57,10 @@ class CyclistsController < ApplicationController
 
   patch "/cyclists/:id" do
     @cyclist = Cyclist.find_by_id(params[:id])
-    @cyclist.name = params[:name]
+    @cyclist.username = params[:username]
     @cyclist.email = params[:email]
     @cyclist.password = params[:password]
+    @cyclist.bio = params[:bio]
     if logged_in? && @cyclist == current_user && @cyclist.valid?
       @cyclist.save
       redirect to "/cyclists/#{@cyclist.id}"

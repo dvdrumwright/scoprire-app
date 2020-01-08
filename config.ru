@@ -6,6 +6,7 @@ end
 
 
 run ApplicationController
+
 use CyclistsController
 use PostsController
 use RidesController

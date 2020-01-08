@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191220154208) do
+ActiveRecord::Schema.define(version: 20200108192915) do
 
   create_table "cyclists", force: :cascade do |t|
-    t.string   "name"
+    t.string   "username"
     t.string   "email"
     t.text     "bio"
     t.string   "password_digest"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20191220154208) do
   end
 
   create_table "rides", force: :cascade do |t|
+    t.string   "title"
     t.string   "location"
     t.text     "description"
     t.string   "ride_distance"

@@ -1,6 +1,7 @@
 class CreateRides < ActiveRecord::Migration
   def change
     create_table :rides do |t|
+      t.string :title
       t.string :location
       t.text :description
       t.string :ride_distance
