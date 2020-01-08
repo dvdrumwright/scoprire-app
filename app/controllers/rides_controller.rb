@@ -1,14 +1,53 @@
 class RidesController < ApplicationController
-
-  # GET: /rides
-  get "/rides" do
-    erb :"/rides/index.html"
+ get "/rides" do
+    @ride = Ride.all
+    erb :"/rides/rides"
   end
 
-  # GET: /rides/new
-  get "/rides/new" do
-    erb :"/rides/new.html"
+  post '/rides' do
+    @ride = current_user.rides.new(location: params[:location], description: params[:description], ride_distance: params[:ride_distance], ride_date: params[:ride_date])
+    if @ride.save
+      redirect to "/rides/#{@ride.slug}"
+    else
+      redirect to '/artist/new'
+    end
   end
+
+ get "/rides/new" do
+    if logged_in?
+      erb : "/rides/new_rides"
+    else
+     redirect to '/'
+  end
+end
+
+get '/rides/:slug' do
+   @ride = Ride.findy_by_slug(params[:slug])
+   erb :'/rides/show_rides'
+ end
+
+get '/rides/:slug/edit'
+ @ride = Ride.findy_by_slug(params[:slug])
+ if logged_in? && current_user.rides.include?(@ride)
+ else
+   redirect to "/rides/#{@ride.slug}"
+ end
+end
+
+patch '/rides/:slug' do
+  @ride = Ride.findy_by_slug(params[:slug])
+  @ride.location = params[:location]
+  @ride.description = params[:description]
+  @ride.ride_distance = params[:ride_distance]
+  @ride.ride_date = params[:ride_date]
+  if 
+
+
+
+  t.string :location
+  t.text :description
+  t.string :ride_distance
+  t.string :ride_date
 
   # POST: /rides
   post "/rides" do
