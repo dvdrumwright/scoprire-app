@@ -2,7 +2,7 @@ class RidesController < ApplicationController
 
  get "/rides" do
     @ride = Ride.all
-    erb :"/rides/rides"
+    erb :'/rides/rides'
   end
 
 post '/rides' do
@@ -14,7 +14,7 @@ post '/rides' do
     end
   end
 
- get "/rides/new" do
+get "/rides/new" do
     if logged_in?
       erb :"/rides/new_rides"
     else
@@ -23,8 +23,9 @@ post '/rides' do
 end
 
 get '/rides/:slug' do
-   @ride = Ride.findy_by_slug(params[:slug])
-   erb :'/rides/show_rides'
+ @ride = Ride.findy_by_slug(params[:slug])
+ erb :'/rides/show_rides'
+  end
  end
 
 
@@ -35,32 +36,32 @@ get '/rides/:slug/edit'
  else
    redirect to "/rides/#{@ride.slug}"
   end
-end
 
-# patch '/rides/:slug' do
-#   @ride = Ride.findy_by_slug(params[:slug])
-#   @ride.title = params[:title]
-#   @ride.location = params[:location]
-#   @ride.description = params[:description]
-#   @ride.ride_distance = params[:ride_distance]
-#   @ride.ride_date = params[:ride_date]
-#   if logged_in? && current_user.rides.include?(@ride)
-#     @ride.save
-#    erb :'/rides/edit_rides'
-#   else
-#     redirect to "/rides/#{@ride.slug}"
-#    end
-#  end
 
-# delete "/rides/:slug" do
-#       @ride = Ride.findy_by_slug(params[:slug])
-#        if logged_in? && current_user.rides.include?(@ride)
-#          @ride.posts.each do |post|
-#            post.delete
-#          end
-#          @ride.delete
-#          redirect to "/cylists/#{current_user.id}"
-#        else
-#          redirect to "/rides/#{@ride.slug}"
-# #        end
-#      end
+
+patch '/rides/:slug' do
+  @ride = Ride.findy_by_slug(params[:slug])
+  @ride.title = params[:title]
+  @ride.location = params[:location]
+  @ride.description = params[:description]
+  @ride.ride_distance = params[:ride_distance]
+  @ride.ride_date = params[:ride_date]
+  if logged_in? && current_user.rides.include?(@ride)
+    @ride.save
+   redirect to  :'/rides/edit_rides'
+  else
+    redirect to "/rides/#{@ride.slug}"
+   end
+ end
+
+   delete "/cyclists/:slug/:id/delete" do
+      @ride = Ride.findy_by_slug(params[:slug])
+       if logged_in? && current_user.rides.include?(@ride)
+         @ride.posts.each do |post|
+           post.delete
+         end
+         redirect to "/cylists/#{current_user.id}"
+       else
+         redirect to "/rides/#{@ride.slug}"
+       end
+     end
