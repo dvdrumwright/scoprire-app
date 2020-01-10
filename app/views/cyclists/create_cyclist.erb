@@ -1,19 +1,14 @@
-
-
-<% unless locals.empty? %>
-  <%= message %>
-<% end %>
-
-
-<h3>Sign Up</h3>
-<form action="/signup" method="POST">
-  <label>name</label>
-   <input type="text" name="name"><br>
-   <label>Password</label>
-    <input type="text" name="password"><br>
-  <label>Email</label>
-   <input type="text" name="email"><br>
-  <label>BIO</label>
-    <input type="text" name="bio"><br>
-  <input class="btn btn-primary" type="submit">
-</form>
+<div class="form">
+  <h1>Sign up and lets get started</h1>
+  <form action="/signup" method="post">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username" required placeholder="Cyclist Name"><br>
+      <label>Email</label>
+      <input type="email" class="form-control" name="email" required placeholder="Cyclist.email"><br>
+      <label>Password</label>
+      <input type="password" class="form-control" required name="password"><br>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

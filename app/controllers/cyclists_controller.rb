@@ -26,7 +26,7 @@ class CyclistsController < ApplicationController
     end
 
     post '/signup' do
-     @cyclist = Cyclist.new(username: params[:username], password: params[:password], email: params[:email], bio: params[:bio])
+     @cyclist = Cyclist.new(cyclist: params[:username], password: params[:password], email: params[:email], bio: params[:bio])
     if @cyclist.save
       session[:user_id] = @cyclist.id
       redirect to "/cyclists/#{@cyclist.id}"

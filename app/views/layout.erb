@@ -24,9 +24,21 @@
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <!--[if lt IE 7]>
-      <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
-      <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
-    <![endif]-->
+
+    <div class="rides-page">
+  <h2>Upcoming Rides</h2>
+    <% @rides.sort_by {|x| x.ride_date }.each do |ride| %>
+      <% if ride.ride_date >= Date.today%>
+        <p class="rides-info"><%= "#{ride.ride_date.strftime("%m/%d/%Y")} - #{ride.cyclist.name} - #{ride.location} - "%><a href="/rides/<%=rides.id%>">See details</a></p>
+      <% end %>
+    <% end %>
+  <h2>Past Rides</h2>
+  <% @rides.all.sort_by {|x| x.ride_date }.each do |ride| %>
+    <% if ride.ride_date < Date.today %>
+      <p class="rides-info"><%= "#{ride.ride_date.strftime("%m/%d/%Y")} - #{ride.cyclist.name} - #{ride.location} - "%><a href="/rides/<%=rides.id%>">See details</a></p>
+    <% end %>
+  <% end %>
+</div>
+
   </body>
 </html>
