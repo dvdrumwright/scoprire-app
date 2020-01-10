@@ -1,67 +1,61 @@
 class RidesController < ApplicationController
-
- get "/rides" do
-    @ride = Ride.all
-    erb :'/rides/rides'
-  end
-
-post '/rides' do
-    @ride = current_user.rides.new(title: params[:title], location: params[:location], description: params[:description], ride_distance: params[:ride_distance], ride_date: params[:ride_date])
-    if @ride.save
-      redirect to "/rides/#{@ride.slug}"
+  get '/rides/new' do
+    if logged_in?
+      erb :'/rides/new_rides'
     else
-      redirect to '/artist/new'
+      redirect to '/'
     end
   end
 
-get "/rides/new" do
-    if logged_in?
-      erb :"/rides/new_rides"
+post '/rides' do
+@ride = Ride.new(usename: Cyclist.find_or_create_by(username: params[:cyclist][:username], user_id: current_user.id),
+                              location: params[:location],
+                              ride_date: Date.parse(params[:ride_date]),
+                              description: params[:description],
+                              title: params[:title])
+    if  @ride.save && @ride.cyclist.valid?
+      redirect to "/rides/#{@ride.id}"
     else
-     redirect to '/'
+      redirect to '/rides/new'
+    end
+  end
+
+  get '/rides/:id' do
+     @ride = Ride.find_by_id(params[:id])
+    erb :'/rides/show_cyclist'
+  end
+
+  get '/rides/:id/edit' do
+   @ride = Ride.find_by_id(params[:id])
+    if logged_in? && current_user.concerts.include?(@ride)
+      erb :'/rides/edit_cyclist'
+    else
+      redirect to "/rides/#{ @ride.id}"
+    end
+  end
+
+  patch '/concerts/:id' do
+     @ride = Cyclist.find_by_id(params[:id])
+     @ride.cyclist = Cyclist.find_or_create_by(username: params[:cyclist][:username], user_id: current_user.id)
+     @ride.location = params[:location]
+     @ride.ride_date = Date.parse(params[:ride_date])
+     @ride.description = params[:description].strip
+     @ride.title = params[:title]
+    if logged_in? && current_user.concerts.include?( @ride)
+       @ride.save
+      redirect to "/rides/#{ @ride.id}"
+    else
+      redirect to "/rides/#{ @ride.id}"
+    end
+  end
+
+  delete '/rides/:id' do
+    @ride = Ride.find_by_id(params[:id])
+    if logged_in? && current_user.concerts.include?(  @ride)
+      @ride.delete
+      redirect to "/cyclist/#{current_user.id}"
+    else
+      redirect to "/rides/#{@ride.id}"
+    end
   end
 end
-
-get '/rides/:slug' do
- @ride = Ride.findy_by_slug(params[:slug])
- erb :'/rides/show_rides'
-  end
- end
-
-
-get '/rides/:slug/edit'
- @ride = Ride.findy_by_slug(params[:slug])
- if logged_in? && current_user.rides.include?(@ride)
-  erb :'/rides/edit_rides'
- else
-   redirect to "/rides/#{@ride.slug}"
-  end
-
-
-
-patch '/rides/:slug' do
-  @ride = Ride.findy_by_slug(params[:slug])
-  @ride.title = params[:title]
-  @ride.location = params[:location]
-  @ride.description = params[:description]
-  @ride.ride_distance = params[:ride_distance]
-  @ride.ride_date = params[:ride_date]
-  if logged_in? && current_user.rides.include?(@ride)
-    @ride.save
-   redirect to  :'/rides/edit_rides'
-  else
-    redirect to "/rides/#{@ride.slug}"
-   end
- end
-
-   delete "/cyclists/:slug/:id/delete" do
-      @ride = Ride.findy_by_slug(params[:slug])
-       if logged_in? && current_user.rides.include?(@ride)
-         @ride.posts.each do |post|
-           post.delete
-         end
-         redirect to "/cylists/#{current_user.id}"
-       else
-         redirect to "/rides/#{@ride.slug}"
-       end
-     end
