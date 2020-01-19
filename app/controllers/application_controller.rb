@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    @rides = Ride.all 
+    # @rides = Ride.all 
     erb :index
   end
 

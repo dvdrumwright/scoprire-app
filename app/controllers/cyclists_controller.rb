@@ -25,13 +25,14 @@ class CyclistsController < ApplicationController
       end
     end
 
-    post '/signup' do
-     @cyclist = Cyclist.new(cyclist: params[:username], password: params[:password], email: params[:email], bio: params[:bio])
-    if @cyclist.save
-      session[:user_id] = @cyclist.id
-      redirect to "/cyclists/#{@cyclist.id}"
+  post '/signup' do
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+       redirect to '/signup'
     else
-      redirect to '/signup'
+      @cyclist = Cyclist.new(:username => params[:username], :email => params[:email], :password => params[:password], :bio => params[:bio])
+      @cyclist.save
+      session[:user_id]=@cyclist.id
+      redirect to '/rides'
     end
   end
 
@@ -81,14 +82,12 @@ class CyclistsController < ApplicationController
 
   delete "/cyclists/:id/delete" do
    @cyclist = Cyclist.find_by_id(params[:id])
-   if logged_in? && @cyclist == current_user
-     @cyclist.posts.each do |post|
-       post.delete
+    if logged_in? && @cyclist == current_user
+   @cyclist.posts.each do |post| post.delete
      end
-     @cyclist.rides.each do |ride|
-       ride.delete
+   @cyclist.rides.each do |ride| ride.delete
      end
-     @cyclist.delete
+    @cyclist.delete
      session/clear
      redirect to '/'
    else

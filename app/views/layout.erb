@@ -3,42 +3,24 @@
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-    <title>ScoprireApp</title>
+    <title>Grouppetto</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="/stylesheets/main.css" />
-  </head>
-  <body>
-    <div class="wrapper">
+</head>
 
-        <%= yield %>
+<body>
+   <div class="wrapper">
 
-      <footer class="branding">
-        <small>&copy; 2019 <strong>ScoprireApp</strong></small>
-      </footer>
-    </div>
+       <%= yield %>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-
-    <div class="rides-page">
-  <h2>Upcoming Rides</h2>
-    <% @rides.sort_by {|x| x.ride_date }.each do |ride| %>
-      <% if ride.ride_date >= Date.today%>
-        <p class="rides-info"><%= "#{ride.ride_date.strftime("%m/%d/%Y")} - #{ride.cyclist.name} - #{ride.location} - "%><a href="/rides/<%=rides.id%>">See details</a></p>
-      <% end %>
-    <% end %>
-  <h2>Past Rides</h2>
-  <% @rides.all.sort_by {|x| x.ride_date }.each do |ride| %>
-    <% if ride.ride_date < Date.today %>
-      <p class="rides-info"><%= "#{ride.ride_date.strftime("%m/%d/%Y")} - #{ride.cyclist.name} - #{ride.location} - "%><a href="/rides/<%=rides.id%>">See details</a></p>
-    <% end %>
-  <% end %>
+     <footer class="branding">
+       <small>&copy; 2020 <strong>Grouppetto</strong></small>
+     </footer>
 </div>
-
-  </body>
-</html>
