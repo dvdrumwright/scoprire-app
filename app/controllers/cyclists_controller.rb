@@ -1,4 +1,5 @@
 class CyclistsController < ApplicationController
+
  get '/signup' do
     if logged_in?
       redirect to "/cyclists/#{current_user.id}"
@@ -6,24 +7,6 @@ class CyclistsController < ApplicationController
       erb :'/cyclists/create_cyclist'
     end
   end
-
-  get '/login' do
-    if logged_in?
-      redirect to "/cyclists/#{current_user.id}"
-    else
-      erb :'/cyclists/login_cyclist'
-    end
-  end
-
-  post '/login' do
-    @cyclist = Cyclist.find_by(username: params[:username], password: params[:password])
-      if !@cyclist.nil?
-        session[:user_id] = @cyclist.id
-       redirect to '/'
-      else
-       redirect to '/login'
-      end
-    end
 
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
@@ -36,27 +19,38 @@ class CyclistsController < ApplicationController
     end
   end
 
-  get "/cyclists/:id" do
-    @cyclist = Cyclist.find_by_id(params[:id])
-    if logged_in? && @cyclist  == current_user
-      erb :'/cyclists/show_cyclist'
+
+get '/login' do
+    if logged_in?
+      redirect to "/cyclists/#{current_user.id}"
     else
-      redirect to '/login'
+      erb :'/cyclists/login_cyclist'
     end
   end
 
-
-  get "/cyclists/:id/edit" do
-    @cyclist = Cyclist.find_by_id(params[:id])
-    if logged_in? && @cyclist  == current_user
-      erb :'/cyclists/edit_cyclist'
-    else
-      redirect to '/login'
+post '/login' do
+    @cyclist = Cyclist.find_by(username: params[:username])
+    if @cyclist && @cyclist.authenticate(params[:password])
+      !@cyclist.nil?
+        session[:user_id] = @cyclist.id
+       redirect to '/'
+      else
+       redirect to '/login'
+      end
     end
- end
 
 
-  patch "/cyclists/:id" do
+    get "/cyclists/:id/edit" do
+        @cyclist = Cyclist.find_by_id(params[:id])
+        if logged_in? && @cyclist  == current_user
+          erb :'/cyclists/edit_cyclist'
+        else
+          redirect to '/login'
+        end
+     end
+
+
+patch "/cyclists/:id" do
     @cyclist = Cyclist.find_by_id(params[:id])
     @cyclist.username = params[:username]
     @cyclist.email = params[:email]
@@ -70,17 +64,16 @@ class CyclistsController < ApplicationController
     end
   end
 
-  get '/logout' do
-   if logged_in?
-     session.clear
-     redirect to '/'
-   else
-     redirect to '/'
+  get "/cyclists/:id" do
+      @cyclist = Cyclist.find_by_id(params[:id])
+      if logged_in? && @cyclist  == current_user
+        erb :'/cyclists/show_cyclist'
+      else
+        redirect to '/login'
+      end
    end
- end
 
-
-  delete "/cyclists/:id/delete" do
+delete "/cyclists/:id/delete" do
    @cyclist = Cyclist.find_by_id(params[:id])
     if logged_in? && @cyclist == current_user
    @cyclist.posts.each do |post| post.delete
@@ -94,4 +87,14 @@ class CyclistsController < ApplicationController
     redirect to '/login'
     end
   end
+
+
+  get '/logout' do
+     if logged_in?
+       session.clear
+       redirect to '/'
+     else
+       redirect to '/'
+     end
+   end
 end

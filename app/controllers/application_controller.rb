@@ -1,6 +1,8 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+  use Rack::Flash
 
   configure do
     enable :sessions
@@ -10,19 +12,17 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    # @rides = Ride.all 
     erb :index
   end
 
   helpers do
-    def logged_in?
-      !!current_user
-    end
+   def logged_in?
+     !!current_user
+   end
 
-    def current_user
-      @current_user ||= Cyclist.find_by(session[:user_id]) if session[:user_id]
-    end
-  end
-
+   def current_user
+     @current_user ||= Cyclist.find_by(session[:user_id]) if session[:user_id]
+   end
+ end
 
 end
