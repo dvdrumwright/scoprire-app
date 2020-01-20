@@ -7,12 +7,13 @@
 
 <h1>Sign up and lets get started</h1>
   <form action="/signup" method="POST">
-      <label>Username</label>
-      <input type="text" name="username" required placeholder="Cyclist Name"><br>
-      <label>Email</label>
-      <input type="text"  name="email" required placeholder="Cyclist.email"><br>
-      <label>Password</label>
-      <input type="text" name="password" required placeholder="password"><br>
-    </div>
+   <p>Username: <input type="text" name="username" required placeholder="Name" id="username"></p>
+   <p>Email: <input type="email"  name="email" required placeholder="email" id="email"></p>
+   <p>Password:   <input type="password" name="password" required placeholder="password" id="password"></p>
+ </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+<br>
+<p><a href='/login'> Already hava an account ? </a></p>
+<p><a href='/'> Back to the main page </a></p>

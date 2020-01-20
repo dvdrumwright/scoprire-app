@@ -1,12 +1,15 @@
-<div class="form">
-  <h1>Login</h1>
-  <form action="/login" method="post">
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" class="form" name="username" required placeholder="Your Name"><br>
-      <label>Password</label>
-      <input type="password" class="form" required placeholder="password"><br>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
+<h2>Log In to Your Account</h2>
+
+<form action="/login" method="POST">
+
+  <p>Username: <input type='text' id='username' name="username" required placeholder="Your Name"></p>
+  <p>Password: <input type='password' id='password' name='password' placeholder="password"></p>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+<br>
+
+<p>Don't have an account yet? </p>
+<p><a href='/signup'>Sign up here.</a></p>
+
+<p><a href='/'>Back to the main page.</a></p>
