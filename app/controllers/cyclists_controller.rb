@@ -10,12 +10,12 @@ class CyclistsController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
-       redirect to '/signup'
+       redirect to '/cyclists/create_cyclist'
     else
-      @cyclist = Cyclist.new(:username => params[:username], :email => params[:email], :password => params[:password], :bio => params[:bio])
+      @cyclist = Cyclist.new(:username => params[:username], :email => params[:email])
       @cyclist.save
       session[:user_id]=@cyclist.id
-      redirect to '/rides'
+      redirect to '/'
     end
   end
 
@@ -29,17 +29,17 @@ get '/login' do
   end
 
 post '/login' do
-    @cyclist = Cyclist.find_by(username: params[:username])
-    if @cyclist && @cyclist.authenticate(params[:password])
-      !@cyclist.nil?
-        session[:user_id] = @cyclist.id
-       redirect to '/'
+    cyclist = Cyclist.find_by(username: params[:username])
+    if cyclist && cyclist.authenticate(params[:password])
+       session[:user_id] = cyclist.id
+       redirect to 'rides/'
       else
-       redirect to '/login'
+       redirect to '/signup'
       end
     end
 
 
+#update
     get "/cyclists/:id/edit" do
         @cyclist = Cyclist.find_by_id(params[:id])
         if logged_in? && @cyclist  == current_user
@@ -73,6 +73,8 @@ patch "/cyclists/:id" do
       end
    end
 
+
+#delete
 delete "/cyclists/:id/delete" do
    @cyclist = Cyclist.find_by_id(params[:id])
     if logged_in? && @cyclist == current_user

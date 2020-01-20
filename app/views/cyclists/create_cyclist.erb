@@ -1,15 +1,15 @@
-
+<!--
 
 <% unless locals.empty? %>
   <%= message %>
-<% end %>
-
-
+<% end %> -->
 <h1>Sign up and lets get started</h1>
+
   <form action="/signup" method="POST">
-   <p>Username: <input type="text" name="username" required placeholder="Name" id="username"></p>
-   <p>Email: <input type="email"  name="email" required placeholder="email" id="email"></p>
-   <p>Password:   <input type="password" name="password" required placeholder="password" id="password"></p>
+
+   <p>Username: <input type='text' name='username' required placeholder='Name' id='username'></p>
+   <p>Email: <input type='email'  name='email' required placeholder='email' id='email'></p>
+   <p>Password: <input type='password' name='password' required placeholder='password' id='password'></p>
  </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
