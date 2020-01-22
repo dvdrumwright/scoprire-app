@@ -1,6 +1,6 @@
 class Ride < ActiveRecord::Base
   belongs_to :cyclist
-   validates :ride_date, :location, :description, :ride_distance, presence: true
+  validates :ride_date, :location, :description, :ride_distance, presence: true
 
  def slug
     self.name.downcase.split(" ").join("-")

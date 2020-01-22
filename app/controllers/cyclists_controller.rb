@@ -1,4 +1,6 @@
 require 'bcrypt'
+require 'sinatra'
+
 class CyclistsController < ApplicationController
 
  get '/signup' do
@@ -30,12 +32,13 @@ get '/login' do
   end
 
 post '/login' do
-    cyclist = Cyclist.find_by(username: params[:username])
+    cyclist = Cyclist.find { |u| u.username == params[:username] }
     if cyclist && cyclist.authenticate(params[:password])
        session[:user_id] = cyclist.id
        redirect to '/rides'
       else
-       redirect to '/signup'
+        @error = 'Username or password was incorrect'
+       redirect to '/'
       end
     end
 
