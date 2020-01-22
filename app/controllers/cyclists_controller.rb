@@ -1,3 +1,4 @@
+require 'bcrypt'
 class CyclistsController < ApplicationController
 
  get '/signup' do
@@ -32,7 +33,7 @@ post '/login' do
     cyclist = Cyclist.find_by(username: params[:username])
     if cyclist && cyclist.authenticate(params[:password])
        session[:user_id] = cyclist.id
-       redirect to 'rides/'
+       redirect to '/rides'
       else
        redirect to '/signup'
       end
