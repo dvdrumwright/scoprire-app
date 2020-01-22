@@ -1,16 +1,29 @@
-<h1>Sign-Up And Lets Get Started</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.a {
+  text-align: center;
+}
+</style>
+</head>
+<body>
 
-  <form action="/signup" method="POST">
 
+<div class="a">
+ <form action="/signup" method="POST">
+   <h2>Sign-Up And Lets Get Started</h2>
    <p>Username: <input type='text' name='username' required placeholder='Name' id='username' required></p>
    <p>Email: <input type='email'  name='email' required placeholder='email' id='email' required></p>
    <p>Cyclist Info:<textarea type='bio'name='bio' require placeholder='Tells us a little about you ?' id='bio' required></textarea></p>
    <p>Password: <input type='password' name='password' required placeholder='password' id='password' required></p>
-  </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
+    
   </form>
 
 <br>
 
 <p><a href='/login'>Already hava an account?</a></p>
 <p><a href='/'>Back to Main Page</a></p>
+</div>

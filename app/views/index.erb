@@ -1,43 +1,54 @@
-<div class="inner-bg">
-    <div class="container">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.a {
+  text-align: center;
 
-          <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 text">
-                <h1 style="margin-top: 100px"><span class="glyphicon glyphicon-list-alt"></span> Welcome to Grouppetto</h1>
-                <div class="description">
-                  <p>
-                   We can help you find group rides here, <a href="/signup" style="text-decoration: underline;"><strong>Sign Up Now</strong></a> and forget about wasting time looking for group rides ever again.
-                  </p>
-                </div> <!-- end description  -->
-            </div> <!-- end col-sm-8 -->
-          </div> <!-- end row -->
+}
+div.b{
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+}
 
-<div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <div class="form-box">
-        <div class="form-top">
-          <div class="form-top-center">
-                <h3>Login to our site</h3>
-                <small><p>Enter username and password to log in:</p></small>
-                <% if flash.has?(:message) %>
-                <p style="color:#f0ad4e;"><%= flash[:message] %> </p>
-                <% end %>
-            </div>
-          <div class="form-top-right">
-        <i class="fa fa-lock"></i>
-      </div>
-  </div>
+div.c{
+  outline-style: solid;
+  outline-color: #0066FF;
+  margin: 40px;
+  /*border: 2px solid black;*/
+  background-color: #0066FF;
+  outline: 8px solid #2966FF;
+  outline-offset: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="a">
+  <div class="b">
+    <div class="c">
+  <h2> Welcome to Grouppetto </h2>
+ </div>
+</div>
+
+  <p> We can help you find group rides here, <a href="/signup" style="text-decoration: underline;"><strong>Sign up here</strong></a> and forget about wasting time looking for group rides ever again.</p>
+
+<h4>Login</h4>
+<% if flash.has?(:message) %>
+<p style="color:#f0ad4e;"><%= flash[:message] %> </p>
+<% end %>
 
 <div class="form-bottom">
   <form role="form" action="/login" method="post" >
-    <div class="form-group">
-      <label class="sr-only" for="form-username">Username</label>
-          <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="form-username">
-       </div>
-  <div class="form-group">
-     <label class="sr-only" for="password">Password</label>
-     <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
-  </div>
-    <button type="submit" class="btn">Log In</button>
+<div class="form-group">
+ <label class="sr-only" for="form-username">username</label>
+  <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="form-username">
+</div>
 
-    
+<div class="form-group">
+  <label class="sr-only" for="password">password</label>
+  <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
+
+</div>
+    <button type="submit" class="btn">Log In</button>
+</div>
