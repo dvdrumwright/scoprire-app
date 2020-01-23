@@ -1,18 +1,36 @@
-<div class="user form">
-  <h1>Edit your account</h1>
-  <div>
-    <form action="/cyclists/<%= @cyclist.id %>" method="post">
-      <input type="hidden" name="_method" value="patch">
-        <h1> Edit your user profile </h1>
-        <p>Username:<input type="text" class="form-group" name="username" required value="<%=@cyclist.username%>"></p>
-        <p>Email:<input type="email" class="form-group" name="email" required value="<%=@cyclist.email%>"></p>
-        <p>Password:  <input type="password" class="form-group" required name="password" value="<%=@cyclist.password%>"></p>
+<h2>Edit your Information</2>
+  <h3> Username: <%= @cyclist.username %></h3>
+    <p> email: <%= @cyclist.email %></p>
+    <p> Bio: <%= @cyclist.bio %></p>
+    <p> Password: <%= @cyclist.password_digest %></p>
+    <form method="post" action="/cyclists/<%= @cyclist.id %>">
+      <input id="hidden" type="hidden" name="_method" value="patch">
+
+         <p>Username:<input type="text" name="username" value="<%= @cyclist.username%>"></p>
+        <p>Email:<input type="text" name="email" value="<%= @cyclist.email %>"></p>
+        <p>Password:  <input type="text" name="password" value="<%= @cyclist.password %>"></p>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-  <p><a href="/users/<%=@cyclist.id%>">Back to your account</a></p>
-        <p><form action="/users/<%=@cyclist.id%>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Delete Account">
-  </form></p>
-</div>
+    <p><a href='/logout'>Log Out</a></p>
+  <p><a href='/rides'>Cancel</a></p>
+
+
+  <!-- <div class="user form">
+    <h1>Edit your account</h1>
+    <div>
+      <form action="/cyclists/<%= @cyclist.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+          <h1> Edit your user profile </h1>
+          <p>Username:<input type="text" class="form-group" name="username" required value="<%=@cyclist.username%>"></p>
+          <p>Email:<input type="email" class="form-group" name="email" required value="<%=@cyclist.email%>"></p>
+          <p>Password:  <input type="password" class="form-group" required name="password" value="<%=@cyclist.password%>"></p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    <p><a href="/users/<%=@cyclist.id%>">Back to your account</a></p>
+          <p><form action="/users/<%=@cyclist.id%>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete Account">
+    </form></p>
+  </div> -->

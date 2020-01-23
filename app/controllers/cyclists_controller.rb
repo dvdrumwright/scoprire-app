@@ -8,21 +8,25 @@ class CyclistsController < ApplicationController
 get '/signup' do
  if logged_in?
     flash[:message] = "You are logged In. Here are Grouppetto's near you."
+    # erb :'/cyclists/create_cyclist'
     redirect to "/rides"
     # redirect to "/cyclists/#{current_user.id}"
   else
     logged_in?
     flash[:message] = "Don't Have an account !"
     erb :'/cyclists/create_cyclist'
-
   end
 end
 
 post '/signup' do
-  if params[:username] == "" || params[:email] == "" || params[:password] == ""
-     redirect to '/cyclists/create_cyclist'
+  if logged_in?
+    flash[:message] = "You are logged in. Here are Grouppeto's near you."
+    redirect to "/rides"
+  elsif params[:username] == "" || params[:password] == ""
+    flash[:message] = "In order to sign up, you must have username and password. Please try again."
+     redirect to '/signup'
   else
-     @cyclist = Cyclist.new(:username => params[:username], :email => params[:email])
+     @cyclist = Cyclist.create(username: params[:username], password: params[:password])
      @cyclist.save
      session[:user_id]= @cyclist.id
      redirect to '/'
@@ -37,6 +41,7 @@ get '/login' do
     #  redirect to "/cyclists/#{current_user.id}"
   else
      erb :'/cyclists/login_cyclist'
+    #  erb :'/edit_cyclist'
   end
 end
 
@@ -53,28 +58,33 @@ end
 
 
 #update------------------------------------------------
+
 get "/cyclists/:id/edit" do
+  if logged_in?
   @cyclist = Cyclist.find_by_id(params[:id])
-  if logged_in? && @cyclist  == current_user
+  if @cyclist.logged_in? == current_user
+     flash[:message] = "Looks like you weren't logged in yet. Please log in below."
      erb :'/cyclists/edit_cyclist'
   else
      redirect to '/login'
    end
 end
 
-
 patch "/cyclists/:id" do
+  if params[:username] == "" || params[:email] == "" || params[:password] == ""
+  flash[:message] = "Oops!  Please try again."
+  redirect to "/cyclists/#{params[:id]/edit_cyclist}"
+else
   @cyclist = Cyclist.find_by_id(params[:id])
   @cyclist.username = params[:username]
   @cyclist.email = params[:email]
   @cyclist.password = params[:password]
   @cyclist.bio = params[:bio]
-  if logged_in? && @cyclist == current_user && @cyclist.valid?
-     @cyclist.save
-      redirect to "/cyclists/#{@cyclist.id}"
-  else
-      redirect to '/login'
+  @cyclist.save
+  flash[:message]= "Your information has been updated"
+  redirect to "/cyclists/#{@cyclist.id}"
   end
+end
 end
 
 get "/cyclists/:id" do
