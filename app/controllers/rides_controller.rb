@@ -1,7 +1,7 @@
 class RidesController < ApplicationController
   get '/rides/new' do
     if logged_in?
-      erb :'/rides/new_rides'
+      erb :'/rides/new_ride'
     else
       redirect to '/'
     end

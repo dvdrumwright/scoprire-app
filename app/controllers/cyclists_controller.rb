@@ -16,7 +16,7 @@ class CyclistsController < ApplicationController
         session[:user_id] = @cyclist.id
         redirect to "/cyclists/#{current_user.id}"
      else
-        redirect to '/'
+        redirect to '/rides'
       end
     end
 
