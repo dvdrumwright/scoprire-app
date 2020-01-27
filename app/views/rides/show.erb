@@ -1,0 +1,44 @@
+<!-- <h2> Your Ride Information </h2>
+<% @cyclist.rides.each do |ride| %>
+<p><%= ride.username %> || <a href="/rides/<% ride.slug %>">View</a> / <a href="/rides/<% ride.slug %>/edit">Edit</a></p>
+<% end %>
+<p><a href="/rides/new">Add New Ride</a></p>
+<h2>Your Ride</h2>
+<% @cyclist.rides.each do |ride| %>
+  <p><%= ride.ride_date.strftime("%m/%d/%Y")%> - <%= ride.cyclist.name %> - <%= ride.location %> - <a href="/rides/<%= ride.id %>">View</a> / <a href="/rides/<%= ride.id %>/edit">Edit</a></p>
+<% end %>
+<p><a href="/rides/new">Add Ride</a></p> -->
+
+
+<h3>rides for <a href="/rides/<%= @ride.slug%>">  <%= @ride.title %> </a> </h3>
+
+
+
+<p>cyclist: <%= @cyclist.username %></p>
+<p>Group rides: <%= @ride.group_ride_content %></p>
+<br>
+<br>
+
+
+<form method="post" action="/rides/<%=@ride.id%>"  >
+<input id="hidden" type="hidden" name="_method" value="delete">
+
+
+<!-- hide edit and delete buttons if review does not belong to current user -->
+<% if @ride.id == @cyclist.id %>
+
+<div class="container">
+<div class="row">
+   <div class="col text-center">
+
+   <a href="/rides/<%=@ride.id%>/edit"><button type="button" class="btn btn-dark btn-lg"><i class="fas fa-user-edit"></i> Edit</button></a>
+
+   <button type="submit" class="btn btn-dark btn-lg"><i class="fas fa-trash-alt"></i> Delete</button></a>
+     </div>
+</div>
+</div>
+
+<% end %>
+
+
+</form>

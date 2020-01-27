@@ -7,6 +7,9 @@ class CreateRides < ActiveRecord::Migration
       t.string :ride_distance
       t.string :ride_date
       t.integer :user_id
+      t.integer :ride_id
+      t.datetime :created_at,  null: false
+      t.datetime :updated_at,  null: false
 
 
       t.timestamps null: false

@@ -1,6 +1,8 @@
 require './config/environment'
+require 'sinatra/base'
 require 'rack-flash'
-
+require 'json'
+require 'open-uri'
 class ApplicationController < Sinatra::Base
   use Rack::Flash
 
@@ -15,14 +17,23 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  helpers do
-   def logged_in?
-     !!current_user
+   def current_user(session_hash)
+     Cyclist.find(session_hash[:user_id])
    end
 
-   def current_user
-     @current_user ||= Cyclist.find_by(session[:user_id]) if session[:user_id]
+   def logged_in?(session_hash)
+     !!session_hash[:user_id]
    end
- end
+
+   def fields_empty?(params)
+    error = false
+    params.values.each do |input|
+      if input.empty?
+        flash[:message] = "Please complete all fields."
+        error = true
+      end
+    end
+    error
+  end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200122035530) do
+ActiveRecord::Schema.define(version: 20200127164513) do
 
   create_table "cyclists", force: :cascade do |t|
     t.string   "username"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20200122035530) do
     t.string   "ride_distance"
     t.string   "ride_date"
     t.integer  "user_id"
+    t.integer  "ride_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

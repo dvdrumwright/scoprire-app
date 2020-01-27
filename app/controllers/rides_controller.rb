@@ -1,9 +1,17 @@
 class RidesController < ApplicationController
-  get '/rides/new' do
+  get '/rides' do
     if logged_in?
       erb :'/rides/new_ride'
     else
       redirect to '/'
+    end
+  end
+
+  get '/rides/new_ride' do
+    if logged_in?
+      erb :'rides/new_ride'
+    else
+      redirect to '/login'
     end
   end
 
@@ -21,41 +29,50 @@ class RidesController < ApplicationController
   end
 
   get '/rides/:id' do
+    if logged_in?
      @ride = Ride.find_by_id(params[:id])
-    erb :'/rides/show_cyclist'
+    erb :'/rides/show_ride'
   end
+end
 
   get '/rides/:id/edit' do
+      if logged_in?
    @ride = Ride.find_by_id(params[:id])
-    if logged_in? && current_user.concerts.include?(@ride)
+    if logged_in? && current_user.rides.include?(@ride)
       erb :'/rides/new_rides'
     else
       redirect to "/rides/#{ @ride.id}"
     end
+  else
+    redirect to '/login'
   end
-
+end
+#
   patch '/rides/:id' do
-     @ride = Cyclist.find_by_id(params[:id])
+    if @ride = Cyclist.find_by_id(params[:id])
+
      @ride.cyclist = Cyclist.find_or_create_by(username: params[:cyclist][:username], user_id: current_user.id)
      @ride.location = params[:location]
      @ride.ride_date = Date.parse(params[:ride_date])
      @ride.description = params[:description]
      @ride.title = params[:title]
-  if logged_in? && current_user.cyclists.include?( @ride)
+  elsif
+      logged_in? && current_user.cyclists.include?( @ride)
       @ride.save
       redirect to "/cyclists/#{ @ride.id}"
     else
       redirect to "/rides/#{ @ride.id}"
     end
   end
+end
 
   delete '/rides/:id' do
-    @ride = Ride.find_by_id(params[:id])
-    if logged_in? && current_user.cyclists.include?(@ride)
-      @ride.delete
-      redirect to "/cyclist/#{current_user.id}"
+    if logged_in?
+       @ride = Ride.find_by_id(params[:id])
+       @ride && @ride.cyclists == current_user
+       @ride.delete
+       redirect to '/rides'
     else
-      redirect to "/rides/#{@ride.id}"
+      redirect to '/login'
+      end
     end
-  end
-end

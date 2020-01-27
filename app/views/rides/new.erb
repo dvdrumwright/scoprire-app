@@ -1,0 +1,86 @@
+<% if flash.has?(:error) %>
+<%= flash[:error] %>
+<% end %>
+
+
+<h3> Create a new groupe ride <%= @ride.title %> </h3>
+
+<form action="/rides/new_ride" method="POST">
+  <input type="hidden" name="ride_id" value="@new_ride.id%>">
+
+  <div class="form-group">
+    <label for="group_ride_content">Group ride content</label><br>
+    <textarea id="group_ride_content" name="group_ride_content" placehold="Enter group ride info"></textarea><br></br>
+  </div>
+
+  <div class"form-group">
+    <label for="location">Location</label>
+    <input type="text" name="location" placeholder="Location">
+  </div>
+
+  <div class"form-group">
+    <label for="description">Description</label>
+    <input type="text" name="location" placeholder="Location">
+  </div>
+
+
+  <div class"form-group">
+    <label for="ride_distance">Ride Distance</label>
+    <input type="integer" name="ride_distance" placeholder="How long is the ride">
+  </div>
+
+  <div class"form-group">
+    <label for="ride_date">Ride date</label>
+    <input type="integer" name="ride_date" placeholder="Ride Date">
+  </div>
+
+    <div class="container">
+       <button type="submit" class="btn btn-dark btn-lg">Submit</button>
+     </div>
+
+     <br>
+
+     <p><a href='/login'>Already hava an account?</a></p>
+     <p><a href='/'>Back to Main Page</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<style>
+div.a {
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+
+<div class="a">
+ <form action="/rides/new_ride" method="POST">
+   <h2>Create your group ride</h2>
+   <p>title: <input type='text' name='title' required placeholder='title' id='title' required></p>
+   <p>location: <input type='location'  name='location' required placeholder='location' id='location' required></p>
+   <p>description:<textarea type='description'name='description' require placeholder='Please tell us about the ride ?' id='description' required></textarea></p>
+   <p>ride_distance:<textarea type='interger' name='ride_distance' require placeholder='Ride distance' id='ride_distance' required ></textarea></p>
+   <p>ride_date:<textarea type='integer'name='ride_date' require placeholder='When is your ride' id='ride_date' required></textarea></p>
+
+   <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form> -->
+
+<!-- <br>
+
+<p><a href='/login'>Already hava an account?</a></p>
+<p><a href='/'>Back to Main Page</a></p>
+</div> -->

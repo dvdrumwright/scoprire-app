@@ -1,42 +1,15 @@
-
-<!-- <p> Group rides !, <%= @cyclist.username %>
-  <% @cyclist.rides.each do |t| %>
-  <div>
-    <%= ride.content %>
-  </div>
-  <% end %> -->
+<div class="container">
+    <div class="row">
+        <div class="account-info col-lg-8">
+            <div class="card">
+                <div class="card-header">Account Info</div>
 
 
-  <div class="row">
-  <div class="col">
-    <h1>Welcome, <%= @cyclist.username %></h1>
-    <button onclick="window.location='/cyclists/logout'" class="btn btn-light">Log Out</button>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-md-6">
-    <a href="/rides"><h3>Grouppetto</h3></a>
-    <p>Recent recipes:</p>
-    <ul class="list-group list-group-flush">
-      <% @cyclist.recent(@cyclist.rides).each do |ride| %>
-        <a href="/recipes/<%= recipe.id %>">
-          <li class="list-group-item"><%= ride.name %></li>
-        </a>
-      <% end %>
-    </ul>
-  </div>
-
-
-  <!-- <div class="col-md-6">
-    <a href="/shopping_lists"><h3>Shopping Lists</h3></a>
-    <p>Recent shopping lists:</p>
-    <ul class="list-group list-group-flush">
-      <% @user.recent(@user.shopping_lists).each do |shopping_list| %>
-        <a href="/shopping_lists/<%= shopping_list.id %>">
-          <li class="list-group-item"><%= shopping_list.name %></li>
-        </a>
-      <% end %>
-    </ul>
-  </div> -->
+                <div class="card-body">
+                    <p>Username: <%= @cyclist.username %></p>
+                    <p>Email: <%= @cyclist.email%></p>
+                </div> <!-- end card-body -->
+            </div> <!-- end card -->
+        </div> <!-- end account-info -->
+    </div> <!-- end row -->
 </div>

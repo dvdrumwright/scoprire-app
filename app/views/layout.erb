@@ -1,13 +1,15 @@
+<!doctype html>
 <html>
+<title>Welcome</title>
   <head>
-    <title>Grouppetto</title>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>cyclist</title>
   </head>
   <body>
-    <br>
-    <% if flash[:message] %>
-      <b><i><p class="message"><%= flash[:message] %></p></i></b>
-    <% end %>
-  <%= yield %>
+
+    <div class="container">
+      <h1>Welcome to Grouppetto!</h1>
+      <%= yield %>
+    </div>
+
   </body>
 </html>
