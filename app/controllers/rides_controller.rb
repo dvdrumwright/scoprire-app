@@ -1,7 +1,8 @@
 class RidesController < ApplicationController
+
   get '/rides' do
     if logged_in?
-      erb :'/rides/new_ride'
+        erb :'/rides/new_ride'
     else
       redirect to '/'
     end
@@ -22,7 +23,7 @@ class RidesController < ApplicationController
         description: params[:description],
           title: params[:title])
     if  @ride.save && @ride.cyclist.valid?
-      redirect to "/rides/#{@ride.id}"
+      redirect to "/rides/#{@ride.ride_id}"
     else
       redirect to '/rides/new'
     end
@@ -30,18 +31,18 @@ class RidesController < ApplicationController
 
   get '/rides/:id' do
     if logged_in?
-     @ride = Ride.find_by_id(params[:id])
+     @ride = Ride.find_by_id(params[:ride_id])
     erb :'/rides/show_ride'
   end
 end
 
   get '/rides/:id/edit' do
       if logged_in?
-   @ride = Ride.find_by_id(params[:id])
+   @ride = Ride.find_by_id(params[:ride_id])
     if logged_in? && current_user.rides.include?(@ride)
       erb :'/rides/new_rides'
     else
-      redirect to "/rides/#{ @ride.id}"
+      redirect to "/rides/#{ @ride.ride_id}"
     end
   else
     redirect to '/login'
@@ -57,7 +58,7 @@ end
      @ride.description = params[:description]
      @ride.title = params[:title]
   elsif
-      logged_in? && current_user.cyclists.include?( @ride)
+      logged_in? && current_user.cyclists.include?(@ride)
       @ride.save
       redirect to "/cyclists/#{ @ride.id}"
     else
@@ -68,7 +69,7 @@ end
 
   delete '/rides/:id' do
     if logged_in?
-       @ride = Ride.find_by_id(params[:id])
+       @ride = Ride.find_by_id(params[:ride_id])
        @ride && @ride.cyclists == current_user
        @ride.delete
        redirect to '/rides'

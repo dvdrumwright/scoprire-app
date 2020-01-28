@@ -13,6 +13,15 @@ div.a {
 <div class="a">
 <h2>Login</h2>
 
+
+
+<% if flash.has?(:signup_error) %>
+  <%= flash[:signup_error] %>
+<% end %>
+
+
+
+
 <form action="/login" method="POST">
 
   <div class="form-group">
@@ -27,7 +36,7 @@ div.a {
 
 <div class="container">
   <button type="submit" class="btn btn-primary">Submit</button>
-</div> 
+</div>
 
 </form>
 <br>

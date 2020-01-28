@@ -17,15 +17,20 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-   def current_user(session_hash)
-     Cyclist.find(session_hash[:user_id])
-   end
+  helpers do
 
-   def logged_in?(session_hash)
-     !!session_hash[:user_id]
-   end
+      def logged_in?
+        !!current_user
+      end
 
-   def fields_empty?(params)
+      def current_user
+        @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+      end
+
+    end
+
+
+    def fields_empty?(params)
     error = false
     params.values.each do |input|
       if input.empty?
@@ -34,6 +39,18 @@ class ApplicationController < Sinatra::Base
       end
     end
     error
-  end
+  end 
+
+
+
+
+
+
+
+
+
+
+
+
 
 end

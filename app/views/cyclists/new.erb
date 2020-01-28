@@ -1,5 +1,9 @@
 <h3> Sign-Up And Lets Get Started</h3>
 
+<% if flash.has?(:signup_error) %>
+  <%= flash[:signup_error] %>
+<% end %>
+
  <form action="/signup" method="POST">
 
    <div class="form-group">
