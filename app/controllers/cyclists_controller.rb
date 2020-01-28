@@ -16,22 +16,21 @@ class CyclistsController < ApplicationController
     end
 
     post '/signup' do
-      if params[:username] == "" || params[:email] == "" || params[:password] == ""
-        redirect to '/signup'
-      else
-        @user = Cyclist.new(:username => params[:username], :email => params[:email], :password => params[:password])
-        @user.save
-        session[:user_id] = @user.id
-        redirect to '/rides'
+        if params[:username] == "" || params[:email] == "" || params[:password] == ""
+          redirect to '/signup'
+        else
+          @user = Cyclist.new(:username => params[:username], :email => params[:email], :password => params[:password])
+          @user.save
+          session[:user_id] = @user.id
+          redirect to '/rides'
+        end
       end
-    end
 
     get '/login' do
-
-      if !logged_in?
-        erb :'cyclists/login'
-      else
-        redirect to '/rides'
+       if !logged_in?
+         erb :'cyclists/login'
+       else
+        redirect to :'/rides'
       end
     end
 
@@ -41,6 +40,7 @@ class CyclistsController < ApplicationController
         session[:user_id] = user.id
         redirect to "/rides"
       else
+        flash[:message] = "Your Username or Password is Incorrect."
         redirect to '/signup'
       end
     end
@@ -50,7 +50,7 @@ class CyclistsController < ApplicationController
         session.destroy
         redirect to '/login'
       else
-        redirect to '/'
+        redirect to '/rides'
       end
     end
   end
