@@ -1,11 +1,11 @@
 
 
-<h3>rides for <a href="/rides/<%= @ride.slug%>">  <%= @ride.title %> </a> </h3>
+<h3>rides for <a href="/rides/<%= @ride.slug%>">  <%= @rides.title %> </a> </h3>
 
 
 
-<p>cyclist: <%= @cyclist.username %></p>
-<p>Group rides: <%= @ride.group_ride_content %></p>
+<p>cyclist: <%= @cyclists.username %></p>
+<p>Group rides: <%= @rides.group_ride_content %></p>
 <br>
 <br>
 
@@ -15,7 +15,7 @@
 
 
 <!-- hide edit and delete buttons if review does not belong to current user -->
-<% if @ride.id == @cyclist.id %>
+<% if @rides.id == @cyclists.id %>
 
 <div class="container">
 <div class="row">

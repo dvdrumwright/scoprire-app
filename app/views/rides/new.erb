@@ -5,8 +5,8 @@
 
 <h3> Create a new groupe ride <%= @ride.title %> </h3>
 
-<form action="/new" method="POST">
-  <input type="hidden" name="ride_id" value="@new_ride.id%>">
+<form action="/rides/new" method="POST">
+  <input type="hidden" name="ride_id" value="@new.id%>">
 
   <div class="form-group">
     <label for="group_ride_content">Group ride content</label><br>
