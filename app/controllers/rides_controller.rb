@@ -11,4 +11,15 @@ class RidesController < ApplicationController
       end
   end
 
+  get 'rides/new' do
+    if logged_in?
+      erb :'rides/new'
+    else
+      redirect to '/login'
+    end
+  end
+
+   
+
+
 end

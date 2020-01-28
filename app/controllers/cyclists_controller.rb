@@ -38,7 +38,8 @@ class CyclistsController < ApplicationController
       user = Cyclist.find_by(:username => params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect to "/rides"
+        erb :'/rides'
+
       else
         flash[:message] = "Your Username or Password is Incorrect."
         redirect to '/signup'
