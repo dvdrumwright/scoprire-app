@@ -2,75 +2,55 @@ require 'bcrypt'
 require 'sinatra'
 
 class CyclistsController < ApplicationController
-  get '/signup' do
-      redirect '/rides' if logged_in?
-      erb :"cyclists/new"
+  get '/cyclists/:slug' do
+      @user = Cyclist.find_by_slug(params[:slug])
+      erb :'/cyclists/show'
+    end
 
-  end
-
-  post "/signup" do
-   #validate username and email uniqueness
-     Cyclist.invalid?(params[:user_id])
-     flash[:message] = "Sorry, that username or email is already taken."
-     redirect to '/signup'
-   end
-
-
-   # params cannot be empty
-  redirect to '/signup' if fields_empty?(params)
-
-    @cyclist = Cyclist.create(:username => params[:username],
-         :email => params[:email],
-         :password => params[:password])
-
-  #assign session user_id to new user
-  session[:user_id] =   @cyclist.id
-  redirect '/rides'
-end
-
-get '/logout' do
-    session.clear
-    redirect '/'
-  end
-
-  get "/login" do
-    redirect '/rides' if logged_in?
-    erb :"cyclists/login"
-  end
-
-  post "/login" do
-    # params cannot be empty
-    redirect to '/login' if fields_empty?(params)
-
-    # authenticate username and password
-    @cyclist = Cyclist.find_by(username: params[:username])
-      if  @cyclist &&  @cyclist.authenticate(params[:password])
-        session[:user_id] =@cyclist.id
-        redirect "/rides"
+    get '/signup' do
+      if !logged_in?
+        erb :'/cyclists/new', locals: {message: "Please sign up before you sign in"}
       else
-        flash[:message] = "Incorrect username or password. Please log in again."
-        redirect '/login'
+        redirect to '/rides'
       end
-  end
+    end
 
-  get "/cyclists/:slug" do
-    if !logged_in?(session)
-        flash[:message] = "You must be logged in to view your profile."
-        redirect '/'
-    else
-        # find user by slugified username
-        @user = Cyclist.find_by_slug(params[:slug])
+    post '/signup' do
+      if params[:username] == "" || params[:email] == "" || params[:password] == ""
+        redirect to '/signup'
+      else
+        @user = Cyclist.new(:username => params[:username], :email => params[:email], :password => params[:password])
+        @user.save
+        session[:user_id] = @user.id
+        redirect to '/rides'
+      end
+    end
 
-        # only the current user can view their own users/:slug page
-        if @user && @user.id == current_user(session).id
-          erb :"/cyclists/show"
-        else
-          flash[:message] = "Sorry, you cannot view another user's profile."
-          redirect '/login'
+    get '/login' do
+
+      if !logged_in?
+        erb :'cyclists/login'
+      else
+        redirect to '/rides'
+      end
+    end
+
+    post '/login' do
+      user = Cyclist.find_by(:username => params[:username])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect to "/rides"
+      else
+        redirect to '/signup'
+      end
+    end
+
+    get '/logout' do
+      if logged_in?
+        session.destroy
+        redirect to '/login'
+      else
+        redirect to '/'
       end
     end
   end
-
-
-
-end

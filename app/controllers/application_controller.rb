@@ -30,18 +30,18 @@ class ApplicationController < Sinatra::Base
     end
 
 
-    def fields_empty?(params)
-    error = false
-    params.values.each do |input|
-      if input.empty?
-        flash[:message] = "Please complete all fields."
-        error = true
-      end
-    end
-    error
-  end 
-
-
+  #   def fields_empty?(params)
+  #   error = false
+  #   params.values.each do |input|
+  #     if input.empty?
+  #       flash[:message] = "Please complete all fields."
+  #       error = true
+  #     end
+  #   end
+  #   error
+  # end
+  #
+  #
 
 
 

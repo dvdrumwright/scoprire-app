@@ -8,11 +8,11 @@
         </div><!-- end card-header-->
 
         <div class="card-body">
- 
+
 
          <% @rides.each do |ride|  %>
 
-        <a href="/rides/<%= ride.id  %>" ><%= rides.title %></a>
+        <a href="/rides/<%= ride.ride_id  %>" ><%= rides.title %></a>
         <br>
         <% end %>
 
