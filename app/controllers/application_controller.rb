@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+
   helpers do
 
       def logged_in?
@@ -25,33 +26,8 @@ class ApplicationController < Sinatra::Base
       end
 
       def current_user
-        @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+        @current_user ||= Cyclist.find_by(id: session[:user_id]) if session[:user_id]
       end
 
     end
-
-
-  #   def fields_empty?(params)
-  #   error = false
-  #   params.values.each do |input|
-  #     if input.empty?
-  #       flash[:message] = "Please complete all fields."
-  #       error = true
-  #     end
-  #   end
-  #   error
-  # end
-  #
-  #
-
-
-
-
-
-
-
-
-
-
-
 end

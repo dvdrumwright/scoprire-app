@@ -1,6 +1,8 @@
 class Cyclist < ActiveRecord::Base
 
 attr_accessor :email, :username, :password, :password_confirmation
+
+
 has_secure_password
 
 
@@ -16,8 +18,8 @@ has_secure_password
   has_many :rides
 
 
-  validates :username, uniqueness:true
-  validates :email, presence:true
+  validates :username, uniqueness: { case_sensitive: false }
+  validates :email, uniqueness: { case_sensitive: false }
 
 
   def slug

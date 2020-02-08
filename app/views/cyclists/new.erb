@@ -1,35 +1,16 @@
 <h3> Sign-Up And Lets Get Started</h3>
 
-<% if flash.has?(:signup_error) %>
-  <%= flash[:signup_error] %>
+<% if flash.has?(:signup_page_message) %>
+  <%= flash[:signup_page_message] %>
 <% end %>
 
  <form action="/signup" method="POST">
 
-   <div class="form-group">
-   <label for="username">Username</label>
-   <input type='text' id='username' name="username" required placeholder="Enter user name">
- </div>
-
- <div class="form-group">
- <label for="Email">Email</label>
- <input type='text' id='email' name="email" required placeholder="Enter email">
-</div>
-
- <div class="form-group">
-   <label for="password">Cyclist Info</label>
-   <input type="bio" id="bio"" name="password"" required placeholder="Tells us a little about you">
-</div>
-
-<div class="form-group">
-  <label for="password">Password</label>
-  <input type="password" id="password"" name="password"" required placeholder="Enter password">
-</div>
-
-<div class="container">
-  <button type="submit" class="btn btn-primary">Sign Up</button>
-</div>
-
+   <form action="/signup" method="POST">
+  <p>Name: <input type="text" name="username"></p>
+  <p>Email: <input type="text" name="email"></p>
+  <p>Password: <input type="text" name="password"></p>
+  <input class="btn btn-primary" type="submit">
 </form>
 
 <br>
