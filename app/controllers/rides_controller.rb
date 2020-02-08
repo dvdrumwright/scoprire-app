@@ -1,12 +1,11 @@
 class RidesController < ApplicationController
 
-  get '/rides/:slug' do
-   if logged_in?
-       @rides= Ride.find_by_slug(params[:slug])
-      erb :'/rides/index'
+  get '/rides' do
+       @rides = Ride.all
+      erb :'rides/new'
   end
 
-  get '/rides' do
+  get '/rides/new' do
    if logged_in?
      erb :'/rides/new'
    else
@@ -80,4 +79,3 @@ end
      redirect to '/login'
      end
    end
- end
