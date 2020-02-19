@@ -1,15 +1,11 @@
 class RidesController < ApplicationController
 
-  get '/rides' do
-       @rides = Ride.all
-      erb :'rides/new'
-  end
 
-  get '/rides/new' do
+get '/rides' do
    if logged_in?
      erb :'/rides/new'
    else
-     redirect to '/login'
+     redirect to '/'
    end
  end
 

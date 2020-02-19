@@ -1,12 +1,8 @@
-<% if flash.has?(:error) %>
-<%= flash[:error] %>
-<% end %>
 
-
-<h3> Create a new groupe ride <%= @ride.title %> </h3>
+<h3> Create a new group ride <%=@ride.title%> </h3>
 
 <form action="/rides" method="POST">
-  <input type="hidden" name="ride_id" value="@new.id%>">
+  <input type="hidden" name="ride_id" value="@ride.id%>">
 
   <div class="form-group">
     <label for="group_ride_content">Group ride content</label><br>
@@ -20,7 +16,7 @@
 
   <div class"form-group">
     <label for="description">Description</label>
-    <input type="text" name="location" placeholder="Location">
+    <input type="text" name="Description" placeholder="Description">
   </div>
 
 
@@ -34,9 +30,9 @@
     <input type="integer" name="ride_date" placeholder="Ride Date">
   </div>
 
-    <div class="container">
+  <div class="container">
        <button type="submit" class="btn btn-dark btn-lg">Submit</button>
-     </div>
+    </div>
 
      <br>
 
