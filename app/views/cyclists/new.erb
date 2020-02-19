@@ -1,15 +1,12 @@
 <h3> Sign-Up And Lets Get Started</h3>
 
-<% if flash.has?(:signup_page_message) %>
-  <%= flash[:signup_page_message] %>
-<% end %>
 
  <form action="/signup" method="POST">
 
    <form action="/signup" method="POST">
   <p>Name: <input type="text" name="username"></p>
-  <p>Email: <input type="text" name="email"></p>
-  <p>Password: <input type="text" name="password"></p>
+  <p>Email: <input type="email" name="email"></p>
+  <p>Password: <input type="password" name="password"></p>
   <input class="btn btn-primary" type="submit">
 </form>
 
@@ -17,4 +14,3 @@
 
 <p><a href='/login'>Already hava an account?</a></p>
 <p><a href='/'>Back to Main Page</a></p>
-</div>

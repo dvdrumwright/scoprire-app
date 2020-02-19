@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-div.a {
-  text-align: center;
-}
-</style>
-</head>
-<body>
-
-
-<div class="a">
-<h2>Login</h2>
-
-
-
-<% if flash.has?(:signup_error) %>
-  <%= flash[:signup_error] %>
-<% end %>
-
-
 
 
 <form action="/login" method="POST">
@@ -34,4 +12,3 @@ div.a {
 
 <p>Don't have an account ? <a href="/signup" style="text-decoration: underline;"><strong>Sign up here</strong></a></p>
 <a href='/' style="text-decoration: underline;"><strong>Main Page</strong></a>
-</div>
