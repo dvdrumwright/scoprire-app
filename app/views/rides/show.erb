@@ -3,7 +3,7 @@
   <p><b>Date:</b> <%= @ride.ride_date.strftime("%m/%d/%Y") %></p>
   <p><b>Cyclist:</b> <a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></p>
   <p><b>Location:</b> <%= @ride.location %></p>
-  <p><b>Ride Distanace:</b> <%= @concert.ride_distance%></p>
+  <p><b>Ride Distanace:</b> <%= @ride.ride_distance%></p>
   <p class="ride-description"><b>Description:</b> <%= @ride.description %></p>
   <% if logged_in? && current_user.rides.include?(@ride)%>
     <p><a href="/cyclists/<%=current_user.id%>">Your account</a></p>

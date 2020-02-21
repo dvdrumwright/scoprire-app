@@ -12,7 +12,7 @@ get '/rides' do
  post '/rides' do
    if logged_in?
     @cyclists = Cyclist.find_by_id[:user_id]
-    @rides = @cyclists.rides.create(:location => params[:location], :description => params[:description], :ride_distance => params[:ride_distance],:ride_date => params[:ride_date])
+    @rides = @cyclists.rides.create(:location => params[:location], :discription => params[:discription], :ride_distance => params[:ride_distance],:ride_date => params[:ride_date])
     @rides = current_user
     if @rides.save
        redirect to "/rides/#{@rides.id}"
@@ -53,7 +53,7 @@ end
     @rides.cyclist = Cyclist.find_or_create_by(username: params[:cyclist][:username], user_id: current_user.id)
     @rides.location = params[:location]
     @rides.ride_date = Date.parse(params[:ride_date])
-    @rides.description = params[:description]
+    @rides.discription = params[:discription]
     @rides.title = params[:title]
  elsif
      logged_in? && current_user.cyclists.include?(@rides)

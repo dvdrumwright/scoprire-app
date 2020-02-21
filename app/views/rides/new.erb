@@ -1,10 +1,17 @@
+<br>
+<% if logged_in? %>
+<h2>Welcome, <%=current_user.username%></h2>
+<a href="/logout">Log Out</a>
+<a href="/rides">Show Group Rides</a>
+<% else %>
+<a href="/signup">Sign Up</a>
+<a href="/login">Login</a>
+<% end %>
 
-<h3> Create a new group ride <%=@ride.title%> </h3>
+<h3> Create a new group ride </h3>
 
 <form action="/rides" method="POST">
-  <input type="hidden" name="ride_id" value="@ride.id%>">
-
-  <div class="form-group">
+ <div class="form-group">
     <label for="group_ride_content">Group ride content</label><br>
     <textarea id="group_ride_content" name="group_ride_content" placehold="Enter group ride info"></textarea><br></br>
   </div>
@@ -33,6 +40,25 @@
   <div class="container">
        <button type="submit" class="btn btn-dark btn-lg">Submit</button>
     </div>
+
+
+
+<!-- <h1>Create a new group ride</h1> -->
+<!-- <form action="/rides" method="POST"> -->
+
+<!-- <input type="text" id="title" name="title"> -->
+<!-- <input type="text" id="discription" name="discription">
+<input type="text" id="location" name="location">
+<input type="text" id="ride_distance" name="ride_distance"> -->
+<!-- <input type="text" id="ride_date" name="ride_date">  --> 
+
+
+
+<!-- <input type="submit" value="submit">  -->
+
+
+
+
 
      <br>
 
