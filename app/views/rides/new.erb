@@ -1,66 +1,28 @@
-<br>
-<% if logged_in? %>
-<h2>Welcome, <%=current_user.username%></h2>
-<a href="/logout">Log Out</a>
-<a href="/rides">Show Group Rides</a>
-<% else %>
-
-<a href="/logout">Log Out</a>
-<% end %>
-
-<h3> Create a new group ride </h3>
+<section class="new">
+<h3> Create new group ride </h3>
 
 <form action="/rides" method="POST">
- <div class="form-group">
-    <label for="group_ride_content">Group ride content</label><br>
-    <textarea id="group_ride_content" name="group_ride_content" placehold="Enter group ride info"></textarea><br></br>
-  </div>
 
-  <div class"form-group">
-    <label for="location">Location</label>
-    <input type="text" name="location" placeholder="Location">
-  </div>
+<label for="title">Group ride name:</label>
+<input type="text" name="Group_ride_name" id="title" placeholder="Name your group ride !" required> <br>
 
-  <div class"form-group">
-    <label for="description">Description</label>
-    <input type="text" name="Description" placeholder="Description">
-  </div>
+<label for="group_ride_content">Group ride content:</label>
+<textarea type="text" name="Group_ride_content" id="Group_ride_content" placeholder="Please tell us about this ride" required></textarea><br></br>
 
+<label for="location">Meet Up:</label>
+<input type="text" name="Meet_Up" id="meet_up" placeholder="Departure location" required> <br>
 
-  <div class"form-group">
-    <label for="ride_distance">Ride Distance</label>
-    <input type="integer" name="ride_distance" placeholder="How long is the ride">
-  </div>
+<label for="ride_distance">Ride Distance:</label>
+<input type="number" name="Ride_Distance" id="ride_distance" placeholder="How long is this ride? " required> <br>
 
-  <div class"form-group">
-    <label for="ride_date">Ride date</label>
-    <input type="integer" name="ride_date" placeholder="Ride Date">
-  </div>
-
-  <div class="container">
-       <button type="submit" class="btn btn-dark btn-lg">Submit</button>
-    </div>
+<label for="ride_date">Ride Date:</label>
+<input type="date" name="Ride_Distance" id="ride_date" placeholder="When is this ride happening?" required> <br>
 
 
+    <button type="submit" class="btn btn-dark btn-lg">Submit</button>
 
-<!-- <h1>Create a new group ride</h1> -->
-<!-- <form action="/rides" method="POST"> -->
+</form>
 
-<!-- <input type="text" id="title" name="title"> -->
-<!-- <input type="text" id="discription" name="discription">
-<input type="text" id="location" name="location">
-<input type="text" id="ride_distance" name="ride_distance"> -->
-<!-- <input type="text" id="ride_date" name="ride_date">  -->
-
-
-
-<!-- <input type="submit" value="submit">  -->
-
-
-
-
-
-     <br>
-
-     <p><a href='/login'>Already hava an account?</a></p>
-     <p><a href='/'>Back to Main Page</a></p>
+<br>
+ <a href="/logout">Log Out</a>
+</section>

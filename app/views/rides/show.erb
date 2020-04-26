@@ -1,16 +1,20 @@
-<div class="rides">
-  <h1>ride Detail</h1>
-  <p><b>Date:</b> <%= @ride.ride_date.strftime("%m/%d/%Y") %></p>
-  <p><b>Cyclist:</b> <a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></p>
-  <p><b>Location:</b> <%= @ride.location %></p>
-  <p><b>Ride Distanace:</b> <%= @ride.ride_distance%></p>
-  <p class="ride-description"><b>Description:</b> <%= @ride.description %></p>
+<section class="show">
+
+  <h2><%= @ride.title %>  </h2>
+
+  <p><b>Ride Date:</b> <%= @ride.ride_date.strftime("%m/%d/%y") if !@ride.ride_date.nil? %></p>
+  <p><b>Cyclist:</b><a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></p>
+  <p><b>Meet Up:</b> <%= @ride.meet_up %></p>
+  <p><b>Ride Distance:</b> <%= @ride.ride_distance%></p>
+  <p><b>Group_ride_content:</b> <%= @ride.Group_ride_content%></p>
+
   <% if logged_in? && current_user.rides.include?(@ride)%>
     <p><a href="/cyclists/<%=current_user.id%>">Your account</a></p>
     <p><a href="/rides/<%= @ride.id %>/edit">Edit</a></p>
     <p><form action="/rides/<%=@ride.id%>" method="post">
       <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete Concert">
+      <input type="submit" value="Delete ride">
     </form></p>
   <% end %>
-</div>
+
+</section>
