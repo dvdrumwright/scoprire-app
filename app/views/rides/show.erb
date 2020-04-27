@@ -1,12 +1,13 @@
 <section class="show">
 
-  <h2><%= @ride.title %>  </h2>
+
 
   <p><b>Ride Date:</b> <%= @ride.ride_date.strftime("%m/%d/%y") if !@ride.ride_date.nil? %></p>
   <p><b>Cyclist:</b><a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></p>
   <p><b>Meet Up:</b> <%= @ride.meet_up %></p>
   <p><b>Ride Distance:</b> <%= @ride.ride_distance%></p>
   <p><b>Group_ride_content:</b> <%= @ride.Group_ride_content%></p>
+  <p><b>title:</b><%= @ride.title%></p>
 
   <% if logged_in? && current_user.rides.include?(@ride)%>
     <p><a href="/cyclists/<%=current_user.id%>">Your account</a></p>

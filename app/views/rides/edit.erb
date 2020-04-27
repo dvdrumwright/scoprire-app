@@ -3,7 +3,7 @@
 <h2>Edit group ride created: <%= @ride.name %>  </h2>
 
 
-<form action="/rides/<%=@ride.id%>" method="post">
+<form action="/rides/edit/<%=@ride.id%>" method="post">
 
 <input id="hidden" type="hidden" name="_method" value="PATCH">
 
