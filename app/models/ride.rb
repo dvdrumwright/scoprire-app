@@ -1,6 +1,7 @@
 class Ride < ActiveRecord::Base
-attr_accessor :title, :location, :description, :ride_distance, :ride_date, :user_id, :ride_id, :created_at, :updated_at
-belongs_to :cyclist
+# attr_accessor :title, :location, :description, :ride_distance, :ride_date, :user_id, :ride_id, :created_at, :updated_at
+
+belongs_to :cyclists
 
 
  def slug

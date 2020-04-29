@@ -1,6 +1,15 @@
-<section class="log_in">
+
 
 <h2>Login</h2>
+
+<h3>
+  <font color="#33ccff">
+    <% if flash.has?(:message_for_login_page) %>
+      <a href="/signup"><%= flash[:message_for_login_page] %></a>
+    <% end %>
+  </font>
+</h3>
+
 
 <form action="/cyclists/login" method="POST">
   <p>Name: <input type="text" name="username"></p>
@@ -13,4 +22,3 @@
 
 <p>Don't have an account ? <a href="/signup" style="text-decoration: underline;"><strong>Sign up here</strong></a></p>
 <a href='/' style="text-decoration: underline;"><strong>Main Page</strong></a>
-</section>

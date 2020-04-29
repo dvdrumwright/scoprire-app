@@ -1,11 +1,11 @@
 class RidesController < ApplicationController
 
 
-get '/rides' do
+get '/rides/new' do
    if logged_in?
      erb :'/rides/new'
    else
-     redirect to '/login'
+     redirect to '/'
    end
  end
 
@@ -24,5 +24,5 @@ get '/rides' do
          end
            current_user.save
         end
-    
+
     end

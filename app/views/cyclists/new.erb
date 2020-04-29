@@ -1,4 +1,13 @@
-<section class="new">
+
+ <h3>
+    <font color="#33ccff">
+     <% if flash.has?(:signup_page_message) %>
+      <%= flash[:signup_page_message] %>
+     <% end %>
+    </font>
+  </h3>
+
+
 <h3>Sign up for Sinatra Grouppetto </h3>
 <form action="/cyclists/new" method="POST">
   <p>Username: <input type="text" name="username" id="username"></p>
@@ -11,4 +20,3 @@
 
 <p><a href='/login'>Already hava an account?</a></p>
 <p><a href='/'>Back to Main Page</a></p>
-</section>
