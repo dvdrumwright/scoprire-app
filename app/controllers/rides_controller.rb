@@ -11,7 +11,7 @@ class RidesController < ApplicationController
       end
 
   if !Ride.new(:title => params[:title], :location => params[:location], :description => params[:description], :ride_distance => params[:ride_distance], :ride_date=> params[:ride_date]).valid?
-      flash[:signup_page_message] ="Oops, sorry but that name is already taken!"
+      flash[:signup_page_message] ="oops, this ride alrady exist"
       redirect to '/rides/new'
   elsif @ride = Ride.new(:title => params[:title], :location => params[:location], :description => params[:description], :ride_distance => params[:ride_distance], :ride_date=> params[:ride_date])
         @ride.save
@@ -21,13 +21,19 @@ class RidesController < ApplicationController
   end
 
   get '/rides/:id' do
-    if logged_in?
       @rides = Ride.find_by_id(params[:id])
-     erb :'rides/show'
-   else
-     redirect to '/login'
-   end
- end
+      # redirect to '/login' if !logged_in?
+        if @rides
+          if @rides.rides.cyclist == current_user
+        erb :'/rides/show'
+      else
+           redirect to '/rides/new'
+          end
+        else
+          redirect to '/rides'
+      end
+    end
+
 
   get '/rides/:id/edit' do
        @rides = Ride.find_by_id(params[:id])

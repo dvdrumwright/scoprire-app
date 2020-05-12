@@ -1,13 +1,18 @@
 
+<!-- .strftime("%m/%d/%y") -->
 
 
 
-  <p><b>Ride Date:</b> <%= @ride.ride_date.strftime("%m/%d/%y") if !@ride.ride_date.nil? %></p>
-  <p><b>Cyclist:</b><a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></p>
-  <p><b>Meet Up:</b> <%= @ride.meet_up %></p>
-  <p><b>Ride Distance:</b> <%= @ride.ride_distance%></p>
-  <p><b>Group_ride_content:</b> <%= @ride.Group_ride_content%></p>
-  <p><b>title:</b><%= @ride.title%></p>
+
+  <h2><%= @ride.ride_date%></h2>
+   <ul class="list-ride-info">
+    <li class="list-ride-info">Cyclist:<a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></li>
+    <li class="list-ride-info">Meet Up:<%= @ride.meet_up%></li>
+    <li class="list-ride-info">Ride Distance:<%= @ride.ride_distance%></li>
+    <li class="list-ride-info">Group_ride_content:<%= @ride.Group_ride_content%></li>
+    <li class="list-ride-info">title:<%= @ride.title%></li>
+    <li class="list-ride-info">Group ride created by:<%= @ride.cyclist.username%></li>
+  </ul>
 
   <% if logged_in? && current_user.rides.include?(@ride)%>
     <p><a href="/cyclists/<%=current_user.id%>">Your account</a></p>
@@ -17,3 +22,14 @@
       <input type="submit" value="Delete ride">
     </form></p>
   <% end %>
+
+
+
+
+
+
+    <!-- <p><b>Cyclist:</b><a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></p>
+    <p><b>Meet Up:</b><%= @ride.meet_up %></p>
+    <p><b>Ride Distance:</b><%= @ride.ride_distance%></p>
+    <p><b>Group_ride_content:</b><%= @ride.Group_ride_content%></p>
+    <p><b>title:</b><%= @ride.title%></p> -->
