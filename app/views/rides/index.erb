@@ -1,0 +1,5 @@
+<p>rides:</p>
+<% Ride.all.each do |rides|%>
+  <li><a href='/rides/<%=rides.id%>'>$<%= rides.title %></a></li>
+  <br>
+<% end %>

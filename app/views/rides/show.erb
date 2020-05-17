@@ -1,18 +1,13 @@
 
-<!-- .strftime("%m/%d/%y") -->
+<h2><a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></h2>
 
 
+    <li>Meet Up:<%= @ride.meet_up%></li>
+    <li>Ride Distance:<%= @ride.ride_distance%></li>
+    <li>Group_ride_content:<%= @ride.Group_ride_content%></li>
+    <li>title:<%= @ride.title%></li>
+    <li>Group ride created by:<%= @ride.cyclist.username%></li>
 
-
-  <h2><%= @ride.ride_date%></h2>
-   <ul class="list-ride-info">
-    <li class="list-ride-info">Cyclist:<a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></li>
-    <li class="list-ride-info">Meet Up:<%= @ride.meet_up%></li>
-    <li class="list-ride-info">Ride Distance:<%= @ride.ride_distance%></li>
-    <li class="list-ride-info">Group_ride_content:<%= @ride.Group_ride_content%></li>
-    <li class="list-ride-info">title:<%= @ride.title%></li>
-    <li class="list-ride-info">Group ride created by:<%= @ride.cyclist.username%></li>
-  </ul>
 
   <% if logged_in? && current_user.rides.include?(@ride)%>
     <p><a href="/cyclists/<%=current_user.id%>">Your account</a></p>
