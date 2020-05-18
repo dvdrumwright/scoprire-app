@@ -1,13 +1,18 @@
+class RidesController < ApplicationController
 
-
-  class RidesController < ApplicationController
-
-    get '/rides' do
+  get '/rides' do
     erb :'/rides/index'
   end
 
+get '/rides' do
+if logged_in?
+  erb :'/rides/new'
+else
+  redirect to '/login'
+ end
+end
 
-    post '/rides/new' do
+post '/rides/new' do
        if params[:title] == "" || params[:location] == "" || params[:description] == "" || params[:ride_distance] == "" || params[:ride_date] == ""
           flash[:error] = "All fields must be filled in"
           redirect '/rides/new'
@@ -24,18 +29,15 @@
     end
 
     get '/rides/:id' do
-        @rides = Ride.find_by_id(params[:id])
-      redirect_if_not_loggedin
-          if @rides
-            if @rides.rides.cyclist == current_user
-          erb :'/rides/show'
-        else
-             redirect to '/rides/new'
-            end
-          else
-            redirect to '/rides'
-        end
-      end
+       @rides = Ride.find_by_id(params[:id])
+       if logged_in?
+            @rides == current_user
+         erb :'/rides/show'
+       else
+            redirect to '/login'
+           end
+         end
+
 
 
     get '/rides/:id/edit' do

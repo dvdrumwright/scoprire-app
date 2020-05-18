@@ -8,8 +8,10 @@
   <header>
     <nav class="wrap">
     <% if logged_in? %>
-     <p>Welcome, <%=current_user.username%>
-     <a href="/rides/show">Show Up Coming Rides</a>
+     <p>User: <%=current_user.username%>
+     <h5>logout: <a href="/logout">click here</a></h5>
+     
+
   <% end %>
   </nav>
 </header>

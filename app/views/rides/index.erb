@@ -1,5 +1,9 @@
-<p>rides:</p>
+<p>ride list:</p>
 <% Ride.all.each do |rides|%>
-  <li><a href='/rides/<%=rides.id%>'>$<%= rides.title %></a></li>
+  <li><a href='/rides/<%=rides.id%>'> <%= rides.title%><%=rides.location%><%=rides.description%>
+  <%=rides.ride_distance%><%=rides.ride_date%></a></li>
   <br>
 <% end %>
+
+
+  <h2><a href="/rides/new">test</a></h2>

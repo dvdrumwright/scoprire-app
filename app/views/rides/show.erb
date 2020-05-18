@@ -1,30 +1,12 @@
-
-<h2><a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></h2>
-
-
-    <li>Meet Up:<%= @ride.meet_up%></li>
-    <li>Ride Distance:<%= @ride.ride_distance%></li>
-    <li>Group_ride_content:<%= @ride.Group_ride_content%></li>
-    <li>title:<%= @ride.title%></li>
-    <li>Group ride created by:<%= @ride.cyclist.username%></li>
+<h3><%= @ride.title%></h3>
+<li><%= @ride.location %></li>
+<li><%= @ride.description %></li>
+<li><%= @ride.ride_distance %></li>
+<li><%= @ride.ride_date%></li>
 
 
-  <% if logged_in? && current_user.rides.include?(@ride)%>
-    <p><a href="/cyclists/<%=current_user.id%>">Your account</a></p>
-    <p><a href="/rides/<%= @ride.id %>/edit">Edit</a></p>
-    <p><form action="/rides/<%=@ride.id%>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete ride">
-    </form></p>
-  <% end %>
-
-
-
-
-
-
-    <!-- <p><b>Cyclist:</b><a href="/cyclists/<%= @ride.cyclist.slug %>"><%= @ride.cyclist.username %></a></p>
-    <p><b>Meet Up:</b><%= @ride.meet_up %></p>
-    <p><b>Ride Distance:</b><%= @ride.ride_distance%></p>
-    <p><b>Group_ride_content:</b><%= @ride.Group_ride_content%></p>
-    <p><b>title:</b><%= @ride.title%></p> -->
+<li>User: <%= @ride.email %></li>
+<% if @rides.current_user == @ride.user_id %>
+  <p><a href="/rides/<%= @ride.id%>/edit">Edit</a></p>
+  <p><a href="/rides/<%=@ride.id%>/delete">delete</a></p>
+<% end %>
