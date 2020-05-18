@@ -1,9 +1,23 @@
-<p>ride list:</p>
-<% Ride.all.each do |rides|%>
-  <li><a href='/rides/<%=rides.id%>'> <%= rides.title%><%=rides.location%><%=rides.description%>
-  <%=rides.ride_distance%><%=rides.ride_date%></a></li>
+
+  <h2>Group ride list</h2>
   <br>
-<% end %>
 
 
-  <h2><a href="/rides/new">test</a></h2>
+  <%@rides.each do |p|%>
+
+  <div class='ride_data'>
+      <h4><a class='ride_title' href='/rides/<%=p.id%>'>title:<%=p.title%></a></h4>
+      <p>Meetup location:<%=p.location%></p>
+      <p>Ride discriptio:<%=p.description%></p>
+      <p>Ride date:<%=p.ride_date%></p>
+
+
+           <form method="post" action="/rides/<%=p.id%>/delete">
+              <input id="hidden" type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="Delete Project">
+          </form>
+          <form method="get" action="/rides/<%=p.id%>/edit">
+              <input type="submit" value="Edit Project">
+          </form>
+          <%end%>
+      </div>
