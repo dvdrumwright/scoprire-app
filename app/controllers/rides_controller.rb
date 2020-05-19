@@ -1,15 +1,17 @@
 class RidesController < ApplicationController
 
-  get '/rides' do
-  if logged_in?
-    @rides = Ride.all
-    erb :'/rides/index'
-  else
-    redirect to '/login'
-  end
-end
 
-  get '/rides/new' do
+get '/rides' do
+    if logged_in?
+       @rides = Ride.all
+        erb :'rides/index_rides'
+    else
+      redirect to '/login'
+      end
+  end
+
+
+  get '/rides' do
   if logged_in?
     erb :'/rides/new'
   else
@@ -17,67 +19,82 @@ end
   end
 end
 
-  post '/rides/new' do
-    if params.empty?
+  post '/rides' do
+    if logged_in?
+      if params.empty?
           flash[:error] = "All fields must be filled in"
-          redirect '/rides/new'
-
-    elsif logged_in? && !params.empty?
+          redirect to '/rides/new'
+      else
           @ride = current_user.rides.create(:title => params[:title], :location => params[:location], :description => params[:description], :ride_distance => params[:ride_distance], :ride_date=> params[:ride_date])
-       if @ride.save
-          redirect "/rides/#{@ride.id}"
+          if @ride.save
+          redirect to "/rides/#{@ride.id}"
        else
-           flash[:error] = "Your project could not be saved. Try again!"
+           flash[:error] = "Your input could not be saved. Try again!"
           redirect '/rides/new'
           end
-      else
-          flash[:error] = "You must be logged in to see the projects index."
+        end
+          else
+          flash[:error] = "You must be logged In !"
           redirect '/login'
           end
-          current_user.save
         end
 
-
-    get '/rides/:id' do
+ get '/rides/:id' do
     if logged_in?
        @rides = Ride.find_by_id(params[:id])
        erb :'/rides/show'
      else
-        flash[:erro] = "You must be logged in"
+        flash[:erro] = "You must be logged In"
         redirect to '/login'
      end
    end
 
-
-
-    get '/rides/:id/edit' do
+ get '/rides/:id/edit' do
+      if logged_in?
          @rides = Ride.find_by_id(params[:id])
-    if logged_in? && current_user.rides.include?(@rides)
+      if  @rides  && @rides.user == current_user
        erb :'/rides/edit'
     else
+      redirect to '/rides'
+    end
+  else
       flash[:erro] = "You must be logged in"
       redirect to '/login'
       end
     end
 
     patch '/rides/:id' do
-        @rides = current_user.rides.find_by_id(params[:id])
-    if params[:title] == "" || params[:location] == "" || params[:description] == "" || params[:ride_distance] == "" || params[:ride_date] == ""
-       @rides.update(title: params[:title], location: params[:location], description: params[:description], ride_distance: params[:ride_distance], ride_date: params[:ride_date])
-       redirect "/rides/#{@rides.id}"
-    else
-       redirect "/rides/#{@rides.id}/edit"
+   if logged_in?
+     if params.empty?
+       redirect to "/rides/#{params[:id]}/edit"
+     else
+       @ride = Ride.find_by_id(params[:id])
+       if  @ride && @ride.user == current_user
+         if  @ride.update(:title => params[:title], :location => params[:location], :description => params[:description], :ride_distance => params[:ride_distance], :ride_date=> params[:ride_date])
+           redirect to "/rides/#{@ride.id}"
+         else
+           redirect to "/rides/#{@ride.id}/edit"
+         end
+       else
+         redirect to '/rides'
        end
-    end
+     end
+   else
+     redirect to '/login'
+   end
+ end
 
-    delete '/rides/:id/delete' do
-      if logged_in?
-        @rides = Ride.find_by_id(params[:id])
-    if @rides.user_id ==  current_user then @rides.delete else redirect '/login' end
-        else
-            flash[:error] = "You must be logged in."
-            redirect '/login'
+ delete '/rides/:id/delete' do
+   if logged_in?
+     @ride = Ride.find_by_id(params[:id])
+
+      if  @ride && @ride.user == current_user
+          @ride.delete
+      end
+        redirect to '/rides'
+
+      else
+        redirect to '/login'
         end
-        redirect '/rides'
+      end
     end
-end

@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  get "/" do
+  get '/' do
     erb :index
   end
 
@@ -28,13 +28,6 @@ class ApplicationController < Sinatra::Base
       def current_user
         @current_user ||= Cyclist.find_by(id: session[:user_id]) if session[:user_id]
       end
-    end
 
-    def redirect_if_not_loggedin
-     if !logged_in?
-       redirect to '/login'
-     end
-   end
-
-
+  end
 end

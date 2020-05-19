@@ -1,20 +1,18 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Sinatra Grouppeto</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Find stay in the know</title>
   </head>
-
-<body>
-  <header>
-    <nav class="wrap">
-    <% if logged_in? %>
-     <p>User: <%=current_user.username%>
-     <h5>logout: <a href="/logout">click here</a></h5>
-     
-
-  <% end %>
-  </nav>
-</header>
+  <body>
+    <div class="p-3 mb-2 bg-light text-dark">
+      <div class="container p-3 mb-2">
 
  <flash>
  <% if flash.has?(:message)%>
@@ -24,5 +22,16 @@
 
     <%=yield%>
 
-    </body>
+    <!-- footer -->
+           <div class="row fixed-bottom">
+             <div class="col-sm-12 text-center">
+               &copy; 2020 FIND. All Rights Reserved.
+             </div>
+           </div><!-- .footer -->
+
+       </div><!-- .container -->
+     </div><!-- .background -->
+
+
+   </body>
  </html>
