@@ -22,7 +22,6 @@ class CyclistsController < ApplicationController
    end
   end
 
-
   post '/signup' do
    if params[:username] == "" || params[:email] == "" || params[:password] == ""
      flash[:signup_page_message] = "Sorry, can you make sure to fill out all three fields: Name, Email, and Password?"
@@ -43,8 +42,7 @@ class CyclistsController < ApplicationController
    end
  end
 
-
-  get '/login' do
+ get '/login' do
      if !logged_in?
        erb :'cyclists/login'
      else
