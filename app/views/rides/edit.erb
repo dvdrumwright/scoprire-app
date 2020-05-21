@@ -1,10 +1,23 @@
-<h2> Edit Ride </h2>
+<!DOCTYPE html>
 
-<form method="post" action="/rides/<%=@ride.id%>">
-  <input id="hidden" type="hidden" name="_method" value="PATCH">
-  <input type="text" name="title" value="<%= @ridetitle %>">
-  <input type="text" name="description" value="<%= @ride.description %>">
-  <input type="text" name="ride_distance" value="<%= @ride.ride_distance %>">
-  <input type="text" name="ride_date" value="<%= @ride.ride_date%>">
-  <input type="submit" value="submit">
-</form>
+<h1><b> Title <%= @ride.title%> </b></h1>
+<hr>
+<form action="/rides/<%=@ride.id%>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="patch">
+
+<input type="text" class="form-control input-sm chat-input"name="title" value="<%= @ride.title %>" />
+<input type="text" class="form-control input-sm chat-input"name="location" value="<%= @ride.location %>" />
+<input type="text" class="form-control input-sm chat-input"name="description" value="<%= @ride.description %>" />
+<input type="text" class="form-control input-sm chat-input"name="title" value="<%= @ride.ride_distance %>" />
+<input type="text" class="form-control input-sm chat-input"name="title" value="<%= @ride.ride_date %>" />
+
+
+<a href="/rides/<%= @ride.id%>/edit">Edit Ride </a>
+
+</br>
+
+<div class="wrapper">
+<span class="group-btn">
+<input id= "item" type="submit" value="Submit Changes" class="btn btn-primary btn-md"/>
+</span>
+</div>

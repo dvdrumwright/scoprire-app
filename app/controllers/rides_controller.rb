@@ -39,7 +39,7 @@ get '/rides' do
 
  get '/rides/:id' do
     if logged_in?
-       @rides = current_user.rides.find_by_id(params[:id])
+       @rides = current_user.rides.find_by_id(params[:ride_id])
        erb :'/rides/show'
      else
         flash[:erro] = "You must be logged In"
@@ -48,11 +48,11 @@ get '/rides' do
    end
 
  get '/rides/:id/edit' do
-   @item= Ride.find(params[:id])
-  if current_user.rides.include?(@item)
+ @ride = Ride.find_by_id(params[:id])
+  if current_user == @ride
     erb :'/rides/edit'
   else
-    redirect "/rides/index_rides"
+    redirect "/rides"
   end
 end
 
