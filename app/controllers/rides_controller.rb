@@ -58,17 +58,16 @@ end
 
 
     patch '/rides/:id' do
-      @item = current_user.rides.find(params[:id])
+      @ride = current_user.rides.find(params[:id])
       if params[:title] != "" ||params[:location] != "" || params[:description] != "" || params[:ride_distance] != "" || params[:ride_date] != ""
-        @item.update(title: params[:title], location: params[:location], description: params[:description], ride_distance: params[:ride_distance], ride_date: params[:ride_date])
-        redirect "/rides/#{@item.id}"
+      @ride.update(title: params[:title], location: params[:location], description: params[:description], ride_distance: params[:ride_distance], ride_date: params[:ride_date])
+        redirect "/rides/#{@ride.id}"
       else
-        redirect "/rides/#{@item.id}/edit"
+        redirect "/rides/#{@ride.id}/edit"
       end
         end
-        binding.pry
+
         delete '/rides/:id/delete' do
-          binding.pry
           @ride = Ride.find_by_id(params[:id])
           if logged_in? && current_user.rides.include?(@ride)
             @ride.delete
