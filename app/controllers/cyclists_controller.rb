@@ -57,7 +57,7 @@ class CyclistsController < ApplicationController
        redirect to "/rides"
      else
        flash[:message_for_login_page] = "Oops, your username & password combo is incorrect; click here to sign in as a new user."
-        redirect to '/signup'
+        redirect to '/login'
      end
    end
 
