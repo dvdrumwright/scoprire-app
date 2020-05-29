@@ -1,23 +1,37 @@
 
-  <p> Welcome, <%= current_user.username %> </p>
-
-<%@rides.each do |p|%>
-
-  <div class='ride_data'>
-      <h4><a class='ride_title' href='/rides/<%=p.id%>'>title:<%=p.title%></a></h4>
-      <p>Meetup location:<%=p.location%></p>
-      <p>Ride discriptio:<%=p.description%></p>
-      <p>Ride date:<%=p.ride_date%></p>
+  <p> Welcome, <%= current_user.username %>
 
 
 
-           <form method="post" action="/rides/<%=p.id%>/delete">
-              <input id="hidden" type="hidden" name="_method" value="DELETE">
-              <input type="submit" value="Delete Project">
-          </form>
+  </p>
 
-          <form method="get" action="/rides/<%=p.id%>/edit">
-              <input type="submit" value="Edit Project">
-          </form>
+<%@rides.each do |r|%>
+
+  <div class='ride_title'>
+      <h4><a class='ride_title' href='/rides/<%=r.id%>'>title:<%=r.title%></a></h4>
+      <br>
+      <div class='ride_info'>
+        <p>Meetup location:<%=r.location%></p>
+        <p>Ride discriptio:<%=r.description%></p>
+        <p>Ride date:<%=r.ride_date%></p>
+      </div>
+      <small>Created by: <%= current_user.username %></small>
+        <%if current_user.username = r %>
+
        <%end%>
       </div>
+    <%end%>
+
+
+
+
+
+
+
+    <!-- <form method="post" action="/rides/<%=p.id%>/delete">
+                 <input id="hidden" type="hidden" name="_method" value="DELETE">
+                 <input type="submit" value="Delete Project">
+             </form>
+             <form method="get" action="/rides/<%=p.id%>/edit">
+                 <input type="submit" value="Edit Project">
+             </form> -->

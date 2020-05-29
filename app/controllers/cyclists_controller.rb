@@ -18,7 +18,7 @@ class CyclistsController < ApplicationController
     if !logged_in?
     erb :'/cyclists/new'
   else
-      redirect '/rides'
+      redirect to '/rides/show'
    end
   end
 
@@ -38,7 +38,7 @@ class CyclistsController < ApplicationController
      @user = Cyclist.new(:username => params[:username], :email => params[:email], :password => params[:password])
      @user.save
      session[:user_id] = @user.id
-     redirect to '/rides'
+     redirect to '/rides/index_rides'
    end
  end
 
@@ -46,7 +46,7 @@ class CyclistsController < ApplicationController
      if !logged_in?
        erb :'cyclists/login'
      else
-       redirect to '/rides'
+       redirect to '/rides/index_rides'
      end
    end
 
