@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-
-<h1><b> Title <%= @ride.title%> </b></h1>
-<hr>
-<form action="/rides/<%=@ride.id%>" method="POST">
-<input id="hidden" type="hidden" name="_method" value="patch">
-
-<input type="text" class="form-control input-sm chat-input"name="title" value="<%= @ride.title %>" />
-<input type="text" class="form-control input-sm chat-input"name="location" value="<%= @ride.location %>" />
-<input type="text" class="form-control input-sm chat-input"name="description" value="<%= @ride.description %>" />
-<input type="text" class="form-control input-sm chat-input"name="title" value="<%= @ride.ride_distance %>" />
-<input type="text" class="form-control input-sm chat-input"name="title" value="<%= @ride.ride_date %>" />
+<% if !!@error_message %>
+    <p class="danger"><%= @error_message %></p>
+<% end %>
 
 
-<a href="/rides/<%= @ride.id%>/edit">Edit Ride </a>
 
-</br>
 
-<div class="wrapper">
-<span class="group-btn">
-<input id= "item" type="submit" value="Submit Changes" class="btn btn-primary btn-md"/>
-</span>
-</div>
+
+<form action="/rides/<%=@ride.id%>"  method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="title ">title:</label>
+    <input type="text" name="title" id="title" value="<%= @ride.title %>"><br>
+    <label for="location">location:</label>
+    <input type="text" name="location" id="location" value="<%=@ride.location%>"><br>
+    <label for="description">description:</label><br>
+    <textarea name="description" id="description" cols="30" rows="10"><%=@ride.description%></textarea><br>
+    <label for="ride_distance">ride_distance:</label>
+    <input type="text" name="ride_distance" id="ride_distance" value="<%=@ride.ride_distance%>"><br>
+    <input type="submit" value="Edit">
+</form>

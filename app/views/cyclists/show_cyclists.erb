@@ -1,9 +1,0 @@
-<p> Here are your Rides!, <%= @user.username %>
-  <% @user.rides.each do |ride| %>
-  <div>
-    <%=ride.title %>
-    <%=ride.location%>
-    <%=ride.description%>
-    <%=ride.ride_date%>
-  </div>
-  <% end %>

@@ -1,19 +1,18 @@
-
- <h3>
-    <font color="#33ccff">
-     <% if flash.has?(:signup_page_message) %>
-      <%= flash[:signup_page_message] %>
-     <% end %>
-    </font>
-  </h3>
+<h3>
+   <font color="#33ccff">
+    <% if flash.has?(:signup_page_message) %>
+     <%= flash[:signup_page_message] %>
+    <% end %>
+   </font>
+ </h3>
 
 
 <small>Sign up</small>
 <form action="/signup" method="POST">
-  <p>Username: <input type="text" name="username" id="username"></p>
-  <p>Email: <input type="text" name="email" id="email"></p>
-  <p>Password: <input type="text" name="password" id="password"></p>
-  <input class="btn btn-primary" type="submit">
+ <p>Username: <input type="text" name="username" id="username"></p>
+ <p>Email: <input type="text" name="email" id="email"></p>
+ <p>Password: <input type="text" name="password" id="password"></p>
+ <input class="btn btn-primary" type="submit">
 </form>
 
 <br>

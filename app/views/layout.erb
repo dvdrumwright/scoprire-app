@@ -8,17 +8,21 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Find stay in the know</title>
+    <title>Document</title>
   </head>
   <body>
+    <h4>DO IT BECAUSE YOU LOVE IT. SMILE & JUST ride. </h4>
+    <% if logged_in? %>
+   <p>
+      <a href="/home">Home</a>&nbsp;
+      <a href="/rides">Friends</a>&nbsp;
+      <a href="/cyclists/<%=session[:user_id]%>">Achievements</a>&nbsp;
+      <a href="/rides/new">Quick Add</a>&nbsp;
+      <a href="/logout">Logout</a>
+   </p>
+       <%end%>
     <div class="p-3 mb-2 bg-light text-dark">
       <div class="container p-3 mb-2">
-
- <flash>
- <% if flash.has?(:message)%>
-      <%= flash[:message] %>
-      <%end%>
-    </flash>
 
     <%=yield%>
 
