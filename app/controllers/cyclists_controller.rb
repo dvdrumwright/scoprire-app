@@ -11,7 +11,7 @@ class CyclistsController < ApplicationController
 
   get '/cyclists/:slug' do
       @cyclist = Cyclist.find_by_slug(params[:slug])
-      erb :'cyclists/show_cyclists'
+      erb :'cyclists/index'
     end
 
   get '/signup' do
@@ -38,7 +38,7 @@ class CyclistsController < ApplicationController
      @user = Cyclist.new(:username => params[:username], :email => params[:email], :password => params[:password])
      @user.save
      session[:user_id] = @user.id
-     redirect to '/rides/index_rides'
+     redirect to '/home'
    end
  end
 
@@ -54,12 +54,16 @@ class CyclistsController < ApplicationController
      user = Cyclist.find_by(:username => params[:username])
      if user && user.authenticate(params[:password])
        session[:user_id] = user.id
-       redirect to "/rides"
+       redirect to "home"
      else
        flash[:message_for_login_page] = "Oops, your username & password combo is incorrect; click here to sign in as a new user."
         redirect to '/login'
      end
    end
+
+   get '/cyclists/:id' do
+     @user = Cyclist.find_by(id: params[:id])
+     erb :'cyclists/show'
 
    get '/logout' do
      if logged_in?
@@ -69,4 +73,5 @@ class CyclistsController < ApplicationController
        redirect to '/'
      end
    end
+ end
  end

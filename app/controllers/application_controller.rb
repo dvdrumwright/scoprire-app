@@ -15,19 +15,40 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    erb :root
   end
+
+
+  get '/home' do
+        authorize
+        erb :home
+    end
+
+    get '/logout' do
+        session.clear
+        redirect '/'
+    end
+
 
 
   helpers do
 
       def logged_in?
-        !!current_user
+          !!current_user
       end
 
       def current_user
-        @current_user ||= Cyclist.find_by(id: session[:user_id]) if session[:user_id]
+       @current_user ||= Cyclist.find_by(id: session[:user_id]) if session[:user_id]
       end
 
-  end
+      def authenticate(username, password)
+            user = Cyclist.find_by(username: username)
+            session[:user_id] = user.id
+            user
+       end
+
+       def authorize
+           current_user
+       end
+     end
 end
