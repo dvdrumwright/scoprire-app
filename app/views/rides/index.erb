@@ -1,7 +1,7 @@
 <h3>Cycling History</h3>
 
 <% @rides.each do |ride| %>
-    <%= erb :'rides/_ride', locals: {username: ride.username, ride: ride %>
+    <%= erb :'rides/_ride', locals: {user: ride.user, ride: ride }%>
 <% end %>
 
 
@@ -9,10 +9,15 @@
 
 
 
+<!-- <h3>Cycling History</h3>
 
-
-
-
+<% @rides.each do |ride| %>
+   <a href="/rides/<%= ride.id  %>" ><%= ride.title %>title</a>
+   <p>location: <%= ride.location %> minutes</p>
+   <p>description: <%= ride.description %></p>
+   <p>ride_distance: <%= ride.ride_distance %></p>
+   <p>ride_date: <%= ride.ride_date%></p>
+<% end %> -->
 
 
 

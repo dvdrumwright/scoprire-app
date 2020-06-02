@@ -1,10 +1,10 @@
 class RidesController < ApplicationController
 
   get '/rides' do
-        authorize
-        @ride = Ride.all
-        erb :'rides/index_rides'
-    end
+      authorize
+      @rides = Ride.all
+      erb :'rides/index'
+  end
 
     get '/rides/new' do
         authorize

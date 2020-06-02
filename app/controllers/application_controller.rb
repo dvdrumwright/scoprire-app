@@ -34,11 +34,11 @@ class ApplicationController < Sinatra::Base
   helpers do
 
       def logged_in?
-          !!current_user
+          !!Cyclist.find_by(id: session[:user_id])
       end
 
       def current_user
-       @current_user ||= Cyclist.find_by(id: session[:user_id]) if session[:user_id]
+       user = Cyclist.find_by(id: session[:user_id]) if session[:user_id]
       end
 
       def authenticate(username, password)
@@ -50,5 +50,11 @@ class ApplicationController < Sinatra::Base
        def authorize
            current_user
        end
-     end
+
+       def own_run?(ride)
+             current_user == ride.user
+         end
+
+
+    end
 end

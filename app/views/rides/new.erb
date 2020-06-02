@@ -4,30 +4,19 @@
 
 
 
-
-
-
-<h3> Add new group ride </h3>
+<h3> Ride information </h3>
 
 <form action="/rides/new" method="POST">
-
-<label for="title">Group ride name:</label>
-<input type="text" name="title" id="title" placeholder="Name your group ride !" required> <br>
 
 <label for="description">Group ride content:</label>
 <textarea type="text" name="description" id="description" placeholder="Please tell us about this ride" required></textarea><br></br>
 
-<label for="location">Meet Up:</label>
-<input type="text" name="Meet_Up" id="meet_up" placeholder="Departure location" required> <br>
-
 <label for="ride_distance">Ride Distance:</label>
 <input type="number" name="ride_distance" id="ride_distance" placeholder="How long is this ride? " required> <br>
 
-<label for="ride_date">Ride Date:</label>
-<input type="date" name="ride_date" id="ride_date" placeholder="When is this ride happening?" required> <br>
 
 
-    <button type="submit" class="btn btn-dark btn-lg">Submit</button>
+ <input type="submit" value="Add">
 
 </form>
 
