@@ -11,18 +11,21 @@
     <title>Document</title>
   </head>
   <body>
-    <h4>DO IT BECAUSE YOU LOVE IT. SMILE & JUST ride. </h4>
+    <div class="col-sm-12 text-center">
+    <h4>WHEN IS YOUR NEXT EPIC RIDE ?</h4>
+
     <% if logged_in? %>
    <p>
       <a href="/home">Home</a>&nbsp;
-      <a href="/rides">Friends</a>&nbsp;
+      <a href="/rides/index_rides">Rides</a>&nbsp;
       <a href="/cyclists/<%=session[:user_id]%>">Achievements</a>&nbsp;
-      <a href="/rides/new">Quick Add</a>&nbsp;
+      <a href="/rides/new">Create New Ride</a>&nbsp;
       <a href="/logout">Logout</a>
    </p>
        <%end%>
     <div class="p-3 mb-2 bg-light text-dark">
       <div class="container p-3 mb-2">
+        </div>
 
     <%=yield%>
 

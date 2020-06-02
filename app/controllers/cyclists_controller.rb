@@ -56,7 +56,7 @@ class CyclistsController < ApplicationController
        session[:user_id] = user.id
        redirect to "home"
      else
-       flash[:message_for_login_page] = "Oops, your username & password combo is incorrect; click here to sign in as a new user."
+       flash[:message_for_login_page] = "Oops, your username & password combo is incorrect; pleaset try again !"
         redirect to '/login'
      end
    end

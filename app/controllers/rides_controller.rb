@@ -11,10 +11,10 @@ class RidesController < ApplicationController
         erb :'rides/new'
     end
 
-  post '/runs' do
+  post '/rides' do
         authorize
         u = current_user
-        u.runs.build(title: params[:title], location: params[:location], description: params[:description], ride_distance: params[:ride_distance], ride_date: params[:ride_date])
+        u.rides.build(title: params[:title], location: params[:location], description: params[:description], ride_distance: params[:ride_distance], ride_date: params[:ride_date])
         raise PostSiteError.new if !u.save
         # redirect '/users/#{u.id}'
         redirect '/rides'
