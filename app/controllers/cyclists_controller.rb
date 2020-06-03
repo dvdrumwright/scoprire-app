@@ -9,7 +9,7 @@ class CyclistsController < ApplicationController
 		set :session_secret, "password_security"
 	end
 
-  get '/cyclists/:slug' do
+  get '/cyclists' do
       @cyclist = Cyclist.all
       erb :'cyclists/index'
     end
@@ -18,7 +18,7 @@ class CyclistsController < ApplicationController
     if !logged_in?
     erb :'/cyclists/new'
   else
-      redirect to '/rides/show'
+      redirect to '/rides'
    end
   end
 
@@ -54,7 +54,7 @@ class CyclistsController < ApplicationController
      user = Cyclist.find_by(:username => params[:username])
      if user && user.authenticate(params[:password])
        session[:user_id] = user.id
-       redirect to '/rides'
+       redirect to '/home'
      else
        flash[:message_for_login_page] = "Oops, your username & password combo is incorrect; pleaset try again !"
         redirect to '/login'
