@@ -73,5 +73,7 @@ class CyclistsController < ApplicationController
      else
        redirect to '/'
      end
+
+
    end
  end

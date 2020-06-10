@@ -13,6 +13,8 @@ gem 'tux'
 gem 'rack-flash3'
 gem 'sinatra-flash'
 gem 'bcrypt', '~> 3.1.7'
+gem 'pry'
+
 
 
 group :test do

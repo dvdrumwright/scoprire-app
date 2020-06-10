@@ -3,6 +3,7 @@ require 'sinatra/base'
 require 'rack-flash'
 require 'json'
 require 'open-uri'
+require 'pry'
 
 class ApplicationController < Sinatra::Base
   use Rack::Flash
