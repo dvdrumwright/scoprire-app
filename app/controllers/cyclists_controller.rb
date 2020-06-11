@@ -1,5 +1,7 @@
 require 'bcrypt'
 require 'sinatra'
+require 'pry'
+
 
 class CyclistsController < ApplicationController
 

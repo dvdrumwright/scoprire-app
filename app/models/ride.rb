@@ -1,10 +1,3 @@
 class Ride < ActiveRecord::Base
-
-  extend Concerns::Slugify::ClassMethods
-  include Concerns::Slugify::InstanceMethods
-
-  belongs_to :cyclist
-
-
-
+belongs_to :cyclist
 end

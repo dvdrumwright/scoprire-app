@@ -56,6 +56,12 @@ class ApplicationController < Sinatra::Base
              current_user == ride.user
          end
 
+         def login_error_messages(errors)
+            if errors
+                erb :'Cyclists/_errors', locals: {errors: errors}
+            end
+        end
+
 
     end
 end
