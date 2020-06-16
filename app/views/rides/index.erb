@@ -1,8 +1,8 @@
 <h1>Cycling History </h1>
 
 <ul>
-  <% @ride.each do |r| %>
-  <%= erb :'rides/_ride', locals: {user: r.user, r: r %>
+  <% @rides.each do |r| %>
+  <%= erb :'rides/_ride', locals: {user: r.user, r: r} %>
 <% end %>
 
 

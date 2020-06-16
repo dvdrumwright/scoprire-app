@@ -6,12 +6,12 @@
 
 <h3> Ride information </h3>
 
-<form action="/rides/new" method="POST">
+<form action="/rides" method="POST">
 
-<label for="description">Group ride content:</label>
-<textarea type="text" name="description" id="description" placeholder="Please tell us about this ride" required></textarea><br></br>
+<label for="description">Description:</label>
+<textarea name="description" id="description" cols="30" rows="10"></textarea><br>
 
-<label for="ride_distance">Ride Distance:</label>
+<label for="ride_distance">Ride Distance (miles):</label>
 <input type="number" name="ride_distance" id="ride_distance" placeholder="How long is this ride? " required> <br>
 
 
